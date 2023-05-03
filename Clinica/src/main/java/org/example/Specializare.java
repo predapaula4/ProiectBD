@@ -55,7 +55,7 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
-    public static void deleteById(int id) {
+    public  void deleteById(int id) {
         String sql = "DELETE FROM Specializare WHERE IdSpecializare = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -71,7 +71,7 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
-    public static void deleteByDenumire(String denumire) {
+    public  void deleteByDenumire(String denumire) {
         String sql = "DELETE FROM Specializare WHERE Denumire = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -86,5 +86,4 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
-
 }

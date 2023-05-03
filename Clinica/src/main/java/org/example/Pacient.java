@@ -51,4 +51,38 @@ public class Pacient {
             dbConn.closeConnection();
         }
     }
+    public void deleteAllByNP(String nume, String prenume) {
+        String sql = "DELETE FROM Pacient WHERE Nume = ? AND Prenume = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nume);
+            pstmt.setString(2, prenume);
+            pstmt.executeUpdate();
+            System.out.println("Pacientul cu numele" + nume+" si prenumele "+prenume + " a fost ștears din baza de date.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+    public  void deleteById(int id) {
+        String sql = "DELETE FROM Pacient WHERE IdPacient = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            System.out.println("Pacientul cu id-ul " + id + " a fost șters din baza de date.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+
 }

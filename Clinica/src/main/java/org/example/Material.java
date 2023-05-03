@@ -57,7 +57,7 @@ public class Material {
             dbConn.closeConnection();
         }
     }
-    public static void deleteById(int id) {
+    public  void deleteById(int id) {
         String sql = "DELETE FROM Material WHERE IdMaterial = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();

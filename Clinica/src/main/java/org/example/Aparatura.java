@@ -21,6 +21,9 @@ public class Aparatura {
         this.IdAparatura=IdAparatura;
         this.Denumire=Denumire;
     }
+    public Aparatura(){
+
+    }
     public void save() {
         String sql = "INSERT INTO Aparatura (Denumire) VALUES (?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -54,7 +57,7 @@ public class Aparatura {
             dbConn.closeConnection();
         }
     }
-    public static void deleteById(int id) {
+    public  void deleteById(int id) {
         String sql = "DELETE FROM Aparatura WHERE IdAparatura = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -70,7 +73,7 @@ public class Aparatura {
             dbConn.closeConnection();
         }
     }
-    public static void deleteByDenumire(String denumire) {
+    public  void deleteByDenumire(String denumire) {
         String sql = "DELETE FROM Aparatura WHERE Denumire = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -79,7 +82,7 @@ public class Aparatura {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, denumire);
             pstmt.executeUpdate();
-            System.out.println("Apatul cu denumirea " + denumire + " a fost ștearsă din baza de date.");
+            System.out.println("Aparatul cu denumirea " + denumire + " a fost ștearsă din baza de date.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

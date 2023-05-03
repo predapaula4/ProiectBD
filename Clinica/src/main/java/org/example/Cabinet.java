@@ -47,5 +47,35 @@ public class Cabinet {
             dbConn.closeConnection();
         }
     }
+    public void deleteByDenumire(String denumire) {
+        String sql = "DELETE FROM Cabinet WHERE Denumire = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, denumire);
+            pstmt.executeUpdate();
+            System.out.println("Cabinetul cu denumirea " + denumire + " a fost șters din baza de date.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+    public void deleteById(int IdCabinet) {
+        String sql = "DELETE FROM Cabinet WHERE IdCabinet = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, IdCabinet);
+            pstmt.executeUpdate();
+            System.out.println("Cabinetul cu IdCabinet-ul " + IdCabinet + " a fost șters din baza de date.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
 }
 
