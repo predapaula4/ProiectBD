@@ -8,19 +8,25 @@ import java.sql.SQLException;
 // Getters and Setters
 @Data
 public class Angajat {
+    private int IdAngajat;
     private int idSpecializare;
     private String nume;
     private String prenume;
     private int salariu;
-
     public Angajat(int idSpecializare, String nume, String prenume, int salariu) {
+        this.IdAngajat=0;
         this.idSpecializare = idSpecializare;
         this.nume = nume;
         this.prenume = prenume;
         this.salariu = salariu;
     }
-
-
+    public Angajat(int IdAngajat, int idSpecializare, String nume, String prenume, int salariu) {
+        this.IdAngajat=IdAngajat;
+        this.idSpecializare = idSpecializare;
+        this.nume = nume;
+        this.prenume = prenume;
+        this.salariu = salariu;
+    }
 
     public void save() {
         String sql = "INSERT INTO Angajat (IdSpecializare, Nume, Prenume, Salariu) VALUES (?, ?, ?, ?)";

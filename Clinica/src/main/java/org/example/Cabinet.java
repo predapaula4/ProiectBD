@@ -1,0 +1,51 @@
+package org.example;
+
+import lombok.Data;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+@Data
+public class Cabinet {
+    private int IdCabinet;
+    private String Denumire;
+    private Pacient IdPacient;
+    private Specializare IdSpecialiare;
+    private Procedura IdProcedura;
+    Cabinet(String Denumire, Pacient IdPacient, Specializare IdSpecializare, Procedura IdProcedura)
+    {
+        this.IdCabinet=0;
+        this.Denumire=Denumire;
+        this.IdPacient=IdPacient;
+        this.IdSpecialiare=IdSpecializare;
+        this.IdProcedura=IdProcedura;
+    }
+    Cabinet(int IdCabinet, String Denumire, Pacient IdPacient, Specializare IdSpecializare, Procedura IdProcedura)
+    {
+        this.IdCabinet=IdCabinet;
+        this.Denumire=Denumire;
+        this.IdPacient=IdPacient;
+        this.IdSpecialiare=IdSpecializare;
+        this.IdProcedura=IdProcedura;
+    }
+    public void save() {
+        String sql = "INSERT INTO Cabinet (Denumire,IdPacient, IdSpecializare, IdProcedura) VALUES (?,?,?,?)";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, Denumire);
+            pstmt.setInt(2, IdPacient.getIdPacient());
+            pstmt.setInt(3,IdSpecialiare.getIdSpecializare());
+            pstmt.setInt(4,IdProcedura.getIdProcedura());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+}
+
