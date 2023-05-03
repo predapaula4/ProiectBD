@@ -2,9 +2,7 @@ package org.example;
 
 import lombok.Data;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Data
 public class Pacient {
@@ -31,6 +29,9 @@ public class Pacient {
         this.Nume=Nume;
         this.Prenume=Prenume;
         this.Varsta=Varsta;
+    }
+    public Pacient(){
+
     }
     public void save() {
         String sql = "INSERT INTO Programare (IdAfectiune, IdProgramare, Nume, Prenume, Varsta) VALUES (?,?,?,?, ?)";
@@ -84,5 +85,31 @@ public class Pacient {
             dbConn.closeConnection();
         }
     }
+    public void printAll() {
+        String sql = "SELECT * FROM Pacient";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                int idPacient = rs.getInt("IdPacient");
+                int idAfectiune = rs.getInt("IdAfectiune");
+                int idProgramare = rs.getInt("IdProgramare");
+                String nume = rs.getString("Nume");
+                String prenume = rs.getString("Prenume");
+                int varsta = rs.getInt("Varsta");
+                System.out.println("IdPacient: " + idPacient + " | IdAfectiune: " + idAfectiune +
+                        " | IdProgramare: " + idProgramare + " | Nume: " + nume +
+                        " | Prenume: " + prenume + " | Varsta: " + varsta);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+
 
 }

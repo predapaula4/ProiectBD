@@ -20,7 +20,9 @@ public class Material {
         this.IdMaterial=IdMaterial;
         this.Denumire = Denumire;
     }
+    public Material(){
 
+    }
     public void save() {
         String sql = "INSERT INTO Material (Denumire) VALUES ( ?)";
         DatabaseConnection dbConn = new DatabaseConnection();

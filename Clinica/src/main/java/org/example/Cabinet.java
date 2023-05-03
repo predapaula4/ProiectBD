@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Data
@@ -28,6 +29,9 @@ public class Cabinet {
         this.IdPacient=IdPacient;
         this.IdSpecialiare=IdSpecializare;
         this.IdProcedura=IdProcedura;
+    }
+    public Cabinet(){
+
     }
     public void save() {
         String sql = "INSERT INTO Cabinet (Denumire,IdPacient, IdSpecializare, IdProcedura) VALUES (?,?,?,?)";
@@ -77,5 +81,27 @@ public class Cabinet {
             dbConn.closeConnection();
         }
     }
+    public void printAll() {
+        String sql = "SELECT * FROM Cabinet";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int idCabinet = rs.getInt("IdCabinet");
+                String denumire = rs.getString("Denumire");
+                int idPacient = rs.getInt("IdPacient");
+                int idSpecializare = rs.getInt("IdSpecializare");
+                int idProcedura = rs.getInt("IdProcedura");
+                System.out.println("IdCabinet: " + idCabinet + ", Denumire: " + denumire + ", IdPacient: " + idPacient + ", IdSpecializare: " + idSpecializare + ", IdProcedura: " + idProcedura);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+
 }
 

@@ -77,28 +77,28 @@ public class Afectiune {
         }
     }
     public static void printAll() {
-//        String sql = "SELECT * FROM Afectiune";
-//        DatabaseConnection dbConn = new DatabaseConnection();
-//        Connection conn = dbConn.getConnection();
-//
-//        try {
-//            PreparedStatement pstmt = conn.prepareStatement(sql);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            while (rs.next()) {
-//                int id = rs.getInt("IdAfectiune");
-//                String denumire = rs.getString("Denumire");
-//                int idProcedura = rs.getInt("IdProcedura");
-//                Procedura procedura = new Procedura().findById(idProcedura);
-//                Afectiune afectiune = new Afectiune(id, denumire, procedura);
-//                System.out.println(afectiune.toString());
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            dbConn.closeConnection();
-//        }
+        String sql = "SELECT * FROM Afectiune";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                int IdAfectiune = rs.getInt("IdAfectiune");
+                String Denumire = rs.getString("Denumire");
+                int IdProcedura = rs.getInt("IdProcedura");
+
+                System.out.println("IdAfectiune: " + IdAfectiune + ", Denumire: " + Denumire + ", IdProcedura: " + IdProcedura);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
     }
+
 
 
 }

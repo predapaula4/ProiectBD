@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,6 +34,9 @@ public class Programare {
         this.IdCabinet=IdCabinet;
         this.DataConsultatie=DataConsultatie;
         this.OraConsultatiei=OraConsultatiei;
+    }
+    public Programare(){
+
     }
     public void save() {
         String sql = "INSERT INTO Programare (IdPacient,IdAngajat, IdCabinet, DataConsultatie, OraConsultatiei) VALUES (?, ?)";
@@ -86,5 +90,35 @@ public class Programare {
         }
     }
 
+    public void printAll() {
+        String sql = "SELECT * FROM Programare";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int idProgramare = rs.getInt("IdProgramare");
+                int idPacient = rs.getInt("IdPacient");
+                int idAngajat = rs.getInt("IdAngajat");
+                int idCabinet = rs.getInt("IdCabinet");
+                LocalDate dataConsultatie = rs.getDate("DataConsultatie").toLocalDate();
+                LocalTime oraConsultatiei = rs.getTime("OraConsultatiei").toLocalTime();
+
+                System.out.println("Id programare: " + idProgramare +
+                        ", Id pacient: " + idPacient +
+                        ", Id angajat: " + idAngajat +
+                        ", Id cabinet: " + idCabinet +
+                        ", Data consultatie: " + dataConsultatie +
+                        ", Ora consultatie: " + oraConsultatiei);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
 
 }

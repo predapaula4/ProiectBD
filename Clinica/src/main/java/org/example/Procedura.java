@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -30,6 +31,9 @@ public class Procedura {
         this.IdAfectiune=IdAfectiune;
         this.IdAparatura=IdAparatura;
         this.IdMaterial=IdMaterial;
+    }
+    public Procedura(){
+
     }
     public void save() {
         String sql = "INSERT INTO Procedura (Denumire,IdAfectiune, IdAparatura, IdMaterial) VALUES (?,?,?, ?)";
@@ -66,7 +70,7 @@ public class Procedura {
             dbConn.closeConnection();
         }
     }
-    public  void deleteByDenumire(String denumire) {
+    public void deleteByDenumire(String denumire) {
         String sql = "DELETE FROM Procedura WHERE Denumire = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -80,6 +84,30 @@ public class Procedura {
         } finally {
             dbConn.closeConnection();
         }
+    }
+    public  void printAll() {
+        String sql = "SELECT * FROM Procedura";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int IdProcedura = rs.getInt("IdProcedura");
+                String Denumire = rs.getString("Denumire");
+                int IdAfectiune = rs.getInt("IdAfectiune");
+                int IdAparatura = rs.getInt("IdAparatura");
+                int IdMaterial = rs.getInt("IdMaterial");
+
+                System.out.println("IdProcedura: " + IdProcedura + ", Denumire: " + Denumire + ", IdAfectiune: " + IdAfectiune + ", IdAparatura: " + IdAparatura + ", IdMaterial: " + IdMaterial);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
     }
 
 }

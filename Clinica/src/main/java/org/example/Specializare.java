@@ -20,7 +20,9 @@ public class Specializare {
         this.IdSpecializare=IdSpecializare;
         this.Denumire = Denumire;
     }
+    public Specializare(){
 
+    }
     public void save() {
         String sql = "INSERT INTO Specilizare (Denumire) VALUES ( ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -36,7 +38,7 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
-    public static void printAll() {
+    public void printAll() {
         String sql = "SELECT * FROM Specializare";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
