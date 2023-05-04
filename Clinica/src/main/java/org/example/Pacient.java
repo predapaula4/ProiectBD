@@ -33,6 +33,10 @@ public class Pacient {
     public Pacient(){
 
     }
+
+    public Pacient(int idPacient) {
+    }
+
     public void save() {
         String sql = "INSERT INTO Programare (IdAfectiune, IdProgramare, Nume, Prenume, Varsta) VALUES (?,?,?,?, ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -109,6 +113,33 @@ public class Pacient {
         } finally {
             dbConn.closeConnection();
         }
+    }
+    public Pacient findById(int id) {
+        String sql = "SELECT * FROM Pacient WHERE IdPacient = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int idPacient = rs.getInt("IdPacient");
+                int idAfectiune = rs.getInt("IdAfectiune");
+                int idProgramare = rs.getInt("IdProgramare");
+                String nume = rs.getString("Nume");
+                String prenume = rs.getString("Prenume");
+                int varsta = rs.getInt("Varsta");
+                return new Pacient(idPacient, new Afectiune(idAfectiune), new Programare(idProgramare), nume, prenume, varsta);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return null;
     }
 
 

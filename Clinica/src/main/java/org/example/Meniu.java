@@ -28,6 +28,15 @@ public class Meniu
             optiune = scanner.nextInt();
             switch (optiune) {
                 case 1:
+                    System.out.println("Introduceti denumirea afectiuni:");
+                    Scanner unu = new Scanner(System.in);
+                    String optiunea1= unu.nextLine();
+                    Procedura procedura=new Procedura();
+                    procedura.printAll();
+                    System.out.println("Introduceti id-ul Procedurii, puteti alege din procedurile de mai sus ");
+                    int optiune1=unu.nextInt();
+                    Afectiune afectiune=new Afectiune(optiunea1, procedura.findById(optiune1));
+                    afectiune.printAll();
                     break;
                 case 2:
                     break;

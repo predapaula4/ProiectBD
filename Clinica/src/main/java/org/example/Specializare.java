@@ -23,6 +23,10 @@ public class Specializare {
     public Specializare(){
 
     }
+
+    public Specializare(int idSpecializare) {
+    }
+
     public void save() {
         String sql = "INSERT INTO Specilizare (Denumire) VALUES ( ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -88,4 +92,25 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
+    public Specializare findById(int id) {
+        String sql = "SELECT * FROM Specializare WHERE IdSpecializare = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String Denumire = rs.getString("Denumire");
+                return new Specializare(id, Denumire);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return null;
+    }
+
 }

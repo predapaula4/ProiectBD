@@ -38,6 +38,10 @@ public class Programare {
     public Programare(){
 
     }
+
+    public Programare(int idProgramare) {
+    }
+
     public void save() {
         String sql = "INSERT INTO Programare (IdPacient,IdAngajat, IdCabinet, DataConsultatie, OraConsultatiei) VALUES (?, ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -119,6 +123,38 @@ public class Programare {
         } finally {
             dbConn.closeConnection();
         }
+    }
+    public Programare findById(int id) {
+        String sql = "SELECT * FROM Programare WHERE IdProgramare = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        Programare programare = null;
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int idProgramare = rs.getInt("IdProgramare");
+                int idPacient = rs.getInt("IdPacient");
+                int idAngajat = rs.getInt("IdAngajat");
+                int idCabinet = rs.getInt("IdCabinet");
+                LocalDate dataConsultatie = rs.getDate("DataConsultatie").toLocalDate();
+                LocalTime oraConsultatiei = rs.getTime("OraConsultatiei").toLocalTime();
+
+                Pacient pacient = new Pacient().findById(idPacient);
+                Angajat angajat = new Angajat().findById(idAngajat);
+                Cabinet cabinet = new Cabinet().findById(idCabinet);
+                programare = new Programare(idProgramare, pacient, angajat, cabinet, dataConsultatie, oraConsultatiei);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
+        return programare;
     }
 
 }

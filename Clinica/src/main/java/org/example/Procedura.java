@@ -35,6 +35,10 @@ public class Procedura {
     public Procedura(){
 
     }
+
+    public Procedura(int idProcedura) {
+    }
+
     public void save() {
         String sql = "INSERT INTO Procedura (Denumire,IdAfectiune, IdAparatura, IdMaterial) VALUES (?,?,?, ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -109,5 +113,36 @@ public class Procedura {
         }
 
     }
+    public static Procedura findById(int id) {
+        String sql = "SELECT * FROM Procedura WHERE IdProcedura = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String Denumire = rs.getString("Denumire");
+                int IdAfectiune = rs.getInt("IdAfectiune");
+                int IdAparatura = rs.getInt("IdAparatura");
+                int IdMaterial = rs.getInt("IdMaterial");
+
+                Afectiune afectiune = Afectiune.findById(IdAfectiune);
+                Aparatura aparatura = Aparatura.findById(IdAparatura);
+                Material material = Material.findById(IdMaterial);
+
+                return new Procedura(id, Denumire, afectiune, aparatura, material);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
+        return null;
+    }
+
 
 }

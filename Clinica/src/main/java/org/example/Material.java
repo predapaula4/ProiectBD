@@ -91,5 +91,26 @@ public class Material {
             dbConn.closeConnection();
         }
     }
+    public static Material findById(int id) {
+        String sql = "SELECT * FROM Material WHERE IdMaterial = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String denumire = rs.getString("Denumire");
+                return new Material(id, denumire);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return null;
+    }
 
 }

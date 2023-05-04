@@ -102,6 +102,27 @@ public class Cabinet {
             dbConn.closeConnection();
         }
     }
-
+    public Cabinet findById(int IdCabinet) {
+        String sql = "SELECT * FROM Cabinet WHERE IdCabinet = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, IdCabinet);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String denumire = rs.getString("Denumire");
+                int idPacient = rs.getInt("IdPacient");
+                int idSpecializare = rs.getInt("IdSpecializare");
+                int idProcedura = rs.getInt("IdProcedura");
+                return new Cabinet(IdCabinet, denumire, new Pacient(idPacient), new Specializare(idSpecializare), new Procedura(idProcedura));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return null;
+    }
 }
 

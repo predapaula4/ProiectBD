@@ -29,6 +29,10 @@ public class Afectiune {
 
     }
 
+    public Afectiune(int idAfectiune) {
+    }
+
+
     public void save() {
         String sql = "INSERT INTO Angajat (Denumire,IdProcedura) VALUES (?, ?)";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -98,7 +102,28 @@ public class Afectiune {
             dbConn.closeConnection();
         }
     }
+    public static Afectiune findById(int id) {
+        String sql = "SELECT * FROM Afectiune WHERE IdAfectiune = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        Afectiune afectiune = null;
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String denumire = rs.getString("Denumire");
+                int idProcedura = rs.getInt("IdProcedura");
+                Procedura procedura = Procedura.findById(idProcedura);
+                afectiune = new Afectiune(id, denumire, procedura);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return afectiune;
 
-
-
+    }
 }
+

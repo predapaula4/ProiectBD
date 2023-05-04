@@ -89,5 +89,27 @@ public class Aparatura {
             dbConn.closeConnection();
         }
     }
+    public static Aparatura findById(int id) {
+        String sql = "SELECT * FROM Aparatura WHERE IdAparatura = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+        Aparatura aparatura = null;
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int IdAparatura = rs.getInt("IdAparatura");
+                String Denumire = rs.getString("Denumire");
+                aparatura = new Aparatura(IdAparatura, Denumire);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+        return aparatura;
+    }
 
 }

@@ -107,5 +107,30 @@ public class Angajat {
             dbConn.closeConnection();
         }
     }
+    public Angajat findById(int id) {
+        String sql = "SELECT * FROM Angajat WHERE IdAngajat = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int idSpecializare = rs.getInt("IdSpecializare");
+                String nume = rs.getString("Nume");
+                String prenume = rs.getString("Prenume");
+                int salariu = rs.getInt("Salariu");
+                return new Angajat(id, idSpecializare, nume, prenume, salariu);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+
+        return null;
+    }
 
 }
