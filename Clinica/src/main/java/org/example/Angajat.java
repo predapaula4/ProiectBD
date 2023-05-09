@@ -2,27 +2,24 @@ package org.example;
 
 import lombok.Data;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+
 // Getters and Setters
 @Data
 public class Angajat {
     private int IdAngajat;
-    private int idSpecializare;
+    private Specializare idSpecializare;
     private String Nume;
     private String Prenume;
-
     private int salariu;
-    public Angajat(int idSpecializare, String nume, String prenume, int salariu) {
+    public Angajat(Specializare idSpecializare, String nume, String prenume, int salariu) {
         this.IdAngajat=0;
         this.idSpecializare = idSpecializare;
         this.Nume = nume;
         this.Prenume = prenume;
         this.salariu = salariu;
     }
-    public Angajat(int IdAngajat, int idSpecializare, String nume, String prenume, int salariu) {
+    public Angajat(int IdAngajat, Specializare idSpecializare, String nume, String prenume, int salariu) {
         this.IdAngajat=IdAngajat;
         this.idSpecializare = idSpecializare;
         this.Nume = nume;
@@ -38,18 +35,26 @@ public class Angajat {
         Connection conn = dbConn.getConnection();
 
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, idSpecializare);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, idSpecializare.getIdSpecializare());
             pstmt.setString(2, Nume);
             pstmt.setString(3, Prenume);
             pstmt.setInt(4, salariu);
             pstmt.executeUpdate();
+
+            ResultSet generatedKeys = pstmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int generatedId = generatedKeys.getInt(1);
+                this.IdAngajat = generatedId;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             dbConn.closeConnection();
         }
     }
+
+
     public  void deleteAllByNP(String nume, String prenume) {
         String sql = "DELETE FROM Angajat WHERE Nume = ? AND Prenume = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -98,7 +103,8 @@ public class Angajat {
                 String nume = rs.getString("Nume");
                 String prenume = rs.getString("Prenume");
                 int salariu = rs.getInt("Salariu");
-                Angajat angajat = new Angajat(id, idSpecializare, nume, prenume, salariu);
+                Specializare specializare = new Specializare().findById(idSpecializare);
+                Angajat angajat = new Angajat(id, specializare, nume, prenume, salariu);
                 System.out.println(angajat.toString());
             }
         } catch (SQLException e) {
@@ -107,6 +113,7 @@ public class Angajat {
             dbConn.closeConnection();
         }
     }
+
     public Angajat findById(int id) {
         String sql = "SELECT * FROM Angajat WHERE IdAngajat = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -122,7 +129,8 @@ public class Angajat {
                 String nume = rs.getString("Nume");
                 String prenume = rs.getString("Prenume");
                 int salariu = rs.getInt("Salariu");
-                return new Angajat(id, idSpecializare, nume, prenume, salariu);
+                Specializare specializare = new Specializare().findById(idSpecializare);
+                return new Angajat(id, specializare, nume, prenume, salariu);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,5 +140,6 @@ public class Angajat {
 
         return null;
     }
+
 
 }

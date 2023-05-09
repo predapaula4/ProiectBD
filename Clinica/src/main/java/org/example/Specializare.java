@@ -28,7 +28,7 @@ public class Specializare {
     }
 
     public void save() {
-        String sql = "INSERT INTO Specilizare (Denumire) VALUES ( ?)";
+        String sql = "INSERT INTO Specializare (Denumire) VALUES (?)";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
 
@@ -42,6 +42,7 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
+
     public void printAll() {
         String sql = "SELECT * FROM Specializare";
         DatabaseConnection dbConn = new DatabaseConnection();
@@ -92,7 +93,7 @@ public class Specializare {
             dbConn.closeConnection();
         }
     }
-    public Specializare findById(int id) {
+    public static Specializare findById(int id) {
         String sql = "SELECT * FROM Specializare WHERE IdSpecializare = ?";
         DatabaseConnection dbConn = new DatabaseConnection();
         Connection conn = dbConn.getConnection();
@@ -112,5 +113,29 @@ public class Specializare {
         }
         return null;
     }
+    public void updateDenumire(String nouaDenumire) {
+        String sql = "UPDATE Specializare SET Denumire = ? WHERE IdSpecializare = ?";
+        DatabaseConnection dbConn = new DatabaseConnection();
+        Connection conn = dbConn.getConnection();
+
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nouaDenumire);
+            pstmt.setInt(2, IdSpecializare);
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Denumirea specializării cu ID-ul " + IdSpecializare + " a fost actualizată.");
+                Denumire = nouaDenumire; // Actualizăm și atributul local cu noua denumire
+            } else {
+                System.out.println("Nu s-a găsit specializarea cu ID-ul " + IdSpecializare + " în baza de date.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConn.closeConnection();
+        }
+    }
+
 
 }

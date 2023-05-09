@@ -1,5 +1,6 @@
 package org.example;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -35,10 +36,25 @@ public class Meniu
                     procedura.printAll();
                     System.out.println("Introduceti id-ul Procedurii, puteti alege din procedurile de mai sus ");
                     int optiune1=unu.nextInt();
-                    Afectiune afectiune=new Afectiune(optiunea1, procedura.findById(optiune1));
+                    Afectiune afectiune=new Afectiune(optiunea1, Procedura.findById(optiune1));
+                    afectiune.save();
                     afectiune.printAll();
                     break;
                 case 2:
+                    System.out.println("Introduceti numele Angajatului");
+                    Scanner doi=new Scanner(System.in);
+                    String nume=doi.nextLine();
+                    System.out.println("Introduceti prenumele Angajatului");
+                    String prenume=doi.nextLine();
+                    System.out.println("Introduceti salariul angajatului");
+                    int salariu=doi.nextInt();
+                    Specializare spe=new Specializare();
+                    spe.printAll();
+                    System.out.println("Introduceti id-ul Specializarii, puteti alege din specializarile de mai sus ");
+                    int o2=doi.nextInt();
+                    Angajat angajat=new Angajat(Specializare.findById(o2), nume, prenume,salariu);
+                    angajat.save();
+                    angajat.printAll();
                     break;
                 case 3:
                     break;
@@ -53,6 +69,12 @@ public class Meniu
                 case 8:
                     break;
                 case 9:
+                    System.out.println("Introduceti denumirea specializarii");
+                    Scanner noua=new Scanner(System.in);
+                    String spec=noua.nextLine();
+                    Specializare specializare=new Specializare(spec);
+                    specializare.save();
+                    specializare.printAll();
                     break;
                 case 10:
                     meniuPrincipal();
@@ -92,6 +114,7 @@ public class Meniu
                     String o1;
                     o1=unu.nextLine();
                     afectiune.deleteByDenumire(o1);
+                    afectiune.save();
                     afectiune.printAll();
                     break;
                 case 2:
@@ -105,6 +128,7 @@ public class Meniu
                     String op2;
                     op2=doi.nextLine();
                     angajat.deleteAllByNP(o2, op2);
+                    angajat.save();
                     angajat.printAll();
                     break;
                 case 3:
@@ -115,6 +139,7 @@ public class Meniu
                     String o3;
                     o3=trei.nextLine();
                     aparatura.deleteByDenumire(o3);
+                    aparatura.save();
                     aparatura.printAll();
                     break;
                 case 4:
@@ -125,6 +150,7 @@ public class Meniu
                     String o4;
                     o4=patru.nextLine();
                     cabinet.deleteByDenumire(o4);
+                    cabinet.save();
                     cabinet.printAll();
                     break;
                 case 5:
@@ -135,6 +161,7 @@ public class Meniu
                     String o5;
                     o5=cinci.nextLine();
                     material.deleteByDenumire(o5);
+                    material.save();
                     material.printAll();
                     break;
                 case 6:
@@ -147,6 +174,7 @@ public class Meniu
                     String op6;
                     op6=sase.nextLine();
                     pacient.deleteAllByNP(o6, op6);
+                    pacient.save();
                     pacient.printAll();
                     break;
                 case 7:
@@ -156,6 +184,7 @@ public class Meniu
                     Scanner sapte=new Scanner(System.in);
                     String o7=sapte.nextLine();
                     procedura.deleteByDenumire(o7);
+                    procedura.save();
                     procedura.printAll();
                     break;
                 case 8:
@@ -171,6 +200,7 @@ public class Meniu
                     DateTimeFormatter oraFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
                     LocalTime ora = LocalTime.parse(oraString, oraFormatter);
                     programare.deleteByDataOra(data, ora);
+                    programare.save();
                     programare.printAll();
                     break;
                 case 9:
@@ -180,6 +210,7 @@ public class Meniu
                     Scanner noua=new Scanner(System.in);
                     String o9=noua.nextLine();
                     specializare.deleteByDenumire(o9);
+                    specializare.save();
                     specializare.printAll();
                     break;
                 case 10:
@@ -220,6 +251,7 @@ public class Meniu
                         int o1;
                         o1=unu.nextInt();
                         afectiune.deleteById(o1);
+                        afectiune.save();
                         afectiune.printAll();
                         break;
                     case 2:
@@ -230,6 +262,7 @@ public class Meniu
                         int o2;
                         o2=doi.nextInt();
                         angajat.deleteById(o2);
+                        angajat.save();
                         angajat.printAll();
                         break;
                     case 3:
@@ -240,6 +273,7 @@ public class Meniu
                         int o3;
                         o3=trei.nextInt();
                         aparatura.deleteById(o3);
+                        aparatura.save();
                         aparatura.printAll();
                         break;
                     case 4:
@@ -250,6 +284,7 @@ public class Meniu
                         int o4;
                         o4=patru.nextInt();
                         cabinet.deleteById(o4);
+                        cabinet.save();
                         cabinet.printAll();
                         break;
                     case 5:
@@ -260,6 +295,7 @@ public class Meniu
                         int o5;
                         o5=cinci.nextInt();
                         material.deleteById(o5);
+                        material.save();
                         material.printAll();
                         break;
                     case 6:
@@ -269,6 +305,7 @@ public class Meniu
                         Scanner sase=new Scanner(System.in);
                         int o6=sase.nextInt();
                         pacient.deleteById(o6);
+                        pacient.save();
                         pacient.printAll();
                         break;
                     case 7:
@@ -278,6 +315,7 @@ public class Meniu
                         Scanner sapte=new Scanner(System.in);
                         int o7=sapte.nextInt();
                         procedura.deleteById(o7);
+                        procedura.save();
                         procedura.printAll();
                         break;
                     case 8:
@@ -287,6 +325,7 @@ public class Meniu
                         Scanner opt=new Scanner(System.in);
                         int id=opt.nextInt();
                         programare.deleteById(id);
+                        programare.save();
                         programare.printAll();
                         break;
                     case 9:
@@ -296,6 +335,66 @@ public class Meniu
                         Scanner noua=new Scanner(System.in);
                         int o9=noua.nextInt();
                         specializare.deleteById(o9);
+                        specializare.save();
+                        specializare.printAll();
+                        break;
+                    case 10:
+                        meniuPrincipal();
+                        break;
+                    default:
+                        System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
+                        break;
+                }
+            } while (optiune4 != 10);
+        }
+    }
+    public void alegeTabelUpdate(){
+        {
+            Scanner scanner = new Scanner(System.in);
+            int optiune4 = 0;
+
+            do {
+                System.out.println("Tabelele pe care le puteti accesa sunt:");
+                System.out.println("Pentru tabelul Afectiune 1");
+                System.out.println("Pentru tabelul Angajat 2");
+                System.out.println("Pentru tabelul Aparatura 3");
+                System.out.println("Pentru tabelul Cabinet 4");
+                System.out.println("Pentru tabelul Material 5");
+                System.out.println("Pentru tabelul Pacient 6");
+                System.out.println("Pentru tabelul Procedura 7");
+                System.out.println("Pentru tabelul Programare 8");
+                System.out.println("Pentru tabelul Specializare 9");
+                System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 10");
+                System.out.print("Introduceti optiunea dorita: ");
+                optiune4 = scanner.nextInt();
+                switch (optiune4) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        Specializare specializare=new Specializare();
+                        specializare.printAll();
+                        System.out.println("Introduceti id-ul specializarii");
+                        Scanner noua=new Scanner(System.in);
+                        String spec=noua.nextLine();
+                        System.out.println("Introduceti denumirea specializari3i");
+                        Scanner noua1=new Scanner(System.in);
+                        String spec=noua.nextLine();
+
+                        specializare.save();
                         specializare.printAll();
                         break;
                     case 10:
@@ -318,7 +417,8 @@ public class Meniu
             System.out.println("Pentru inserarea datelor intr un tabel apasati tasta 1");
             System.out.println("Pentru stergerea datelor dintr un tabel in functie de denumire/nume, prenume apasati tasta 2");
             System.out.println("Pentru stergerea datelor dintr un tabel in functie de id apasati tasta 3");
-            System.out.println("Pentru a iesi apasati tasta 4");
+            System.out.println("Pentru a modifica date dintr un tabel apasati tasta 4");
+            System.out.println("Pentru a iesi apasati tasta 5");
 
             System.out.print("Introduceti optiunea dorita: ");
             optiune2 = scanner2.nextInt();
@@ -340,13 +440,17 @@ public class Meniu
                     alegeTabelStergereId();
                     break;
                 case 4:
-                    System.out.println("La revedere!");
+                    System.out.println("Ati selectat optiunea 4.");
+                    System.out.println("Alegeti tabelul in care doriti sa modificati: ");
+                    alegeTabelUpdate();
                     break;
+                case 5:
+                    System.out.println("La revedere!");
                 default:
                     System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
                     break;
             }
-        } while (optiune2 != 4);
+        } while (optiune2 != 5);
 
         scanner2.close();
     }
