@@ -1,19 +1,18 @@
 package entities;
 
 import jakarta.persistence.*;
-import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
-@Table(name = "afectiune")
+@Table(name = "Afectiune")
 public class Afectiune {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAfectiune;
 
-    @Column(name = "denumire")
+    @Column(name = "Denumire")
     private String denumire;
 
-    @Column(name = "idprocedura")
+    @Column(name = "IdProcedura")
     private int idProcedura;
 
     public Afectiune() {}

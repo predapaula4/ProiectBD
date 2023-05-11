@@ -2,28 +2,27 @@ package entities;
 
 import jakarta.persistence.*;
 
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "programare")
+@Table(name = "Programare")
 public class Programare {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProgramare;
 
-    @Column(name = "idpacient")
+    @Column(name = "IdPacient")
     private int idPacient;
 
-    @Column(name = "idangajat")
+    @Column(name = "IdAngajat")
     private int idAngajat;
 
-    @Column(name = "dataconsultatie")
+    @Column(name = "DataConsultatie")
     private LocalDate dataConsultatie;
 
-    @Column(name = "oraconsultatiei")
+    @Column(name = "OraConsultatiei")
     private LocalTime oraConsultatiei;
 
     public Programare() {}

@@ -3,13 +3,13 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "aparatura")
+@Table(name = "Aparatura")
 public class Aparatura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAparatura;
 
-    @Column(name = "denumire")
+    @Column(name = "Denumire")
     private String denumire;
 
     public Aparatura() {}

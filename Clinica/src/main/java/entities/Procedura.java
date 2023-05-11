@@ -3,22 +3,22 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "procedura")
+@Table(name = "Procedura")
 public class Procedura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProcedura;
 
-    @Column(name = "denumire")
+    @Column(name = "Denumire")
     private String denumire;
 
-    @Column(name = "idafectiune")
+    @Column(name = "IdAfectiune")
     private int idAfectiune;
 
-    @Column(name = "idaparatura")
+    @Column(name = "IdAparatura")
     private int idAparatura;
 
-    @Column(name = "idmaterial")
+    @Column(name = "IdMaterial")
     private int idMaterial;
 
     public Procedura() {}
