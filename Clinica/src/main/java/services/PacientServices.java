@@ -2,9 +2,12 @@ package services;
 
 import dtos.PacientDTO;
 import entities.Pacient;
+import entities.Programare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.PacientRepository;
+
+import java.util.List;
 
 @Service
 public class PacientServices {
@@ -25,5 +28,8 @@ public class PacientServices {
 
     public Pacient getPacientById(Long id) {
         return pacientRepository.findById(id).orElse(null);
+    }
+    public List<Pacient> getAllPacients() {
+        return pacientRepository.findAll();
     }
 }

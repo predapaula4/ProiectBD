@@ -1,10 +1,13 @@
 package services;
 
 import dtos.ProgramareDTO;
+import entities.Material;
 import entities.Programare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.ProgramareRepository;
+
+import java.util.List;
 
 @Service
 public class ProgramareServices {
@@ -24,5 +27,8 @@ public class ProgramareServices {
 
     public Programare getProgramareById(Long id) {
         return programareRepository.findById(id).orElse(null);
+    }
+    public List<Programare> getAllProgramare() {
+        return programareRepository.findAll();
     }
 }
