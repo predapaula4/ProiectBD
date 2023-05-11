@@ -8,22 +8,22 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Programare")
+@Table(name = "programare")
 public class Programare {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProgramare;
 
-    @Column(name = "IdPacient")
+    @Column(name = "idpacient")
     private int idPacient;
 
-    @Column(name = "IdAngajat")
+    @Column(name = "idangajat")
     private int idAngajat;
 
-    @Column(name = "DataConsultatie")
+    @Column(name = "dataconsultatie")
     private LocalDate dataConsultatie;
 
-    @Column(name = "OraConsultatiei")
+    @Column(name = "oraconsultatiei")
     private LocalTime oraConsultatiei;
 
     public Programare() {}

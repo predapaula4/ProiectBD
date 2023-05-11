@@ -4,22 +4,22 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Angajat")
+@Table(name = "angajat")
 public class Angajat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAngajat;
 
-    @Column(name = "IdSpecializare")
+    @Column(name = "idspecializare")
     private int idSpecializare;
 
-    @Column(name = "Nume", length = 20)
+    @Column(name = "nume", length = 20)
     private String nume;
 
-    @Column(name = "Prenume", length = 20)
+    @Column(name = "prenume", length = 20)
     private String prenume;
 
-    @Column(name = "Salariu")
+    @Column(name = "salariu")
     private int salariu;
 
     public Angajat() {}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.MaterialRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,5 +37,8 @@ public class MaterialServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Material> getAllMaterials() {
+        return materialRepository.findAll();
     }
 }

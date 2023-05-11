@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class ClinicaApplication {
 
     public static void main(String[] args) {
-//       Meniu meniu=new Meniu();
-//       meniu.meniuPrincipal();
+       Meniu meniu=new Meniu();
+       meniu.meniuPrincipal();
     }
 
 }

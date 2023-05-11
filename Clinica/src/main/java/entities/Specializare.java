@@ -5,13 +5,13 @@ import org.springframework.data.relational.core.mapping.Table;
 
 
 @Entity
-@Table(name = "Specializare")
+@Table(name = "specializare")
 public class Specializare {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSpecializare;
 
-    @Column(name = "Denumire", length = 20)
+    @Column(name = "denumire", length = 20)
     private String denumire;
 
     public Specializare() {}

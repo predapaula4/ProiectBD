@@ -3,25 +3,25 @@ import jakarta.persistence.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
-@Table(name = "Pacient")
+@Table(name = "pacient")
 public class Pacient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPacient;
 
-    @Column(name = "IdAfectiune")
+    @Column(name = "idafectiune")
     private int idAfectiune;
 
-    @Column(name = "IdProgramare")
+    @Column(name = "idprogramare")
     private int idProgramare;
 
-    @Column(name = "Nume", length = 20)
+    @Column(name = "nume", length = 20)
     private String nume;
 
-    @Column(name = "Prenume", length = 20)
+    @Column(name = "prenume", length = 20)
     private String prenume;
 
-    @Column(name = "Varsta")
+    @Column(name = "varsta")
     private int varsta;
 
     public Pacient() {}
