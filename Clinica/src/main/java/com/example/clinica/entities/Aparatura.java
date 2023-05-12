@@ -12,6 +12,13 @@ public class Aparatura {
 
     @Column(name = "denumire")
     private String denumire;
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idAparatura=" + idAparatura +
+                ", denumire='" + denumire + '\'' +
+                '}'+"\n";
+    }
 
     public Aparatura() {}
 

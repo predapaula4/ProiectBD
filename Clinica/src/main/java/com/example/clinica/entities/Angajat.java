@@ -22,6 +22,16 @@ public class Angajat {
 
     @Column(name = "salariu")
     private int salariu;
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idAngajat=" + idAngajat +
+                ", nume='" + nume + '\'' +
+                ",prenume='"+ prenume+ '\''+
+                ",salariu='"+ salariu+'\''+
+                '}'+"\n";
+    }
+
 
     public Angajat() {}
 

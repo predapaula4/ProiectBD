@@ -25,7 +25,16 @@ public class Programare {
 
     @Column(name = "oraconsultatiei")
     private LocalTime oraConsultatiei;
-
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idProgramare=" + idProgramare +
+                ", idPacient='" + idPacient + '\'' +
+                ",idAngajat='"+ idAngajat+ '\''+
+                ",Data Consultatiei='"+ dataConsultatie+'\''+
+                ",Ora Consultatiei='"+ oraConsultatiei+'\''+
+                '}'+"\n";
+    }
     public Programare() {}
 
     public Long getIdProgramare() {

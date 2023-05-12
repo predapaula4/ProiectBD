@@ -22,6 +22,16 @@ public class Procedura {
     @Column(name = "idmaterial")
     private int idMaterial;
 
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idProcedura=" + idProcedura +
+                ", denumire='" + denumire + '\'' +
+                ",idAfectiune='"+ idAfectiune+ '\''+
+                ",idAparatura='"+ idAparatura+'\''+
+                ",idMaterial='"+ idMaterial+'\''+
+                '}'+"\n";
+    }
     public Procedura() {}
 
     public Long getIdProcedura() {

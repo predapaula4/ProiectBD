@@ -15,6 +15,14 @@ public class Afectiune {
 
     @Column(name = "idprocedura")
     private int idProcedura;
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idAfectiune=" + idAfectiune +
+                ", denumire='" + denumire + '\'' +
+                ",idProcedura='"+ idProcedura+ '\''+
+                '}'+"\n";
+    }
 
     public Afectiune() {}
 

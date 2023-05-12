@@ -14,7 +14,13 @@ public class Specializare {
 
     @Column(name = "denumire", length = 20)
     private String denumire;
-
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idmaterial=" + idSpecializare +
+                ", denumire='" + denumire + '\'' +
+                '}'+"\n";
+    }
     public Specializare() {}
 
     public Long getIdSpecializare() {

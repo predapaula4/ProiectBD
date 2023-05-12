@@ -18,14 +18,14 @@ public class MaterialController {
         materialService.createMaterial(materialDTO);
     }
 
-//    @GetMapping("/{id}")
-//    public Material getMaterialById(@PathVariable Long id) {
-//        return materialService.getMaterialById(id);
-//    }
-
-    @GetMapping()
-    public List<Material> getAllMaterials() {
-        return materialService.getAllMaterials();
+    @GetMapping("/{id}")
+    public Material getMaterialById(@PathVariable Long id) {
+        return materialService.getMaterialById(id);
     }
+
+//    @GetMapping()
+//    public List<Material> getAllMaterials() {
+//        return materialService.getAllMaterials();
+//    }
 
 }

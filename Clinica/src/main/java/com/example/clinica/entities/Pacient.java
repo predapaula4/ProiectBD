@@ -25,6 +25,15 @@ public class Pacient {
     @Column(name = "varsta")
     private int varsta;
 
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idPacient=" + idPacient +
+                ", nume='" + nume + '\'' +
+                ",prenume='"+ prenume+ '\''+
+                ",varsta='"+ varsta+'\''+
+                '}'+"\n";
+    }
     public Pacient() {}
 
     public Long getIdPacient() {
