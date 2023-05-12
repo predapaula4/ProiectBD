@@ -4,13 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ProgramareDTO {
+    private int idProgramare;
     private int idPacient;
     private int idAngajat;
     private LocalDate dataConsultatie;
     private LocalTime oraConsultatiei;
 
     public ProgramareDTO() {}
-
+    public int getIdProgramare(){return idProgramare;}
     public int getIdPacient() {
         return idPacient;
     }

@@ -13,7 +13,8 @@ public class PacientServices {
 
     @Autowired
     private PacientRepository pacientRepository;
-
+    @Autowired
+    private PacientDTO pacientDTO;
     public void createPacient(PacientDTO pacientDTO) {
         Pacient pacient = new Pacient();
         pacient.setIdAfectiune(pacientDTO.getIdAfectiune());
@@ -34,5 +35,20 @@ public class PacientServices {
     public void deletePacientById(Long id)
     {
         pacientRepository.deleteById(id);
+    }
+
+    public Long getPacientIdByNumeAndPrenume(String nume, String prenume) {
+        Pacient pacient = pacientRepository.findByNumeAndPrenume(nume, prenume);
+        if (pacient != null) {
+            return pacient.getIdPacient();
+        }
+        return null; // sau aruncați o excepție sau gestionați cazul în funcție de nevoile dvs.
+    }
+    public void updateIdProgramare(String nume, String prenume, int idProgramare) {
+        Pacient pacient = pacientRepository.findByNumeAndPrenume(nume, prenume);
+        if (pacient != null) {
+            pacient.setIdProgramare(idProgramare);
+            pacientRepository.save(pacient);
+        }
     }
 }

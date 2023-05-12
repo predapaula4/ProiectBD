@@ -57,6 +57,7 @@ public class Meniu {
                     System.out.println(proceduraServices.getAllProceduras());
                     System.out.println("Introduceti id-ul procedurii, puteti selecta din cele de mai sus: ");
                     Integer idProceduraAfectiune=scanner.nextInt();
+                    scanner.nextLine();
                     afectiuneDTO.setIdProcedura(idProceduraAfectiune);
                     afectiuneServices.createAfectiune(afectiuneDTO);
                     System.out.println(afectiuneServices.gelAllAfections());
@@ -68,6 +69,7 @@ public class Meniu {
                     System.out.println(specializareServices.getAllSpecializares());
                     System.out.println("Introduceti id-ul specializarii, puteti introduce din cele de mai sus: ");
                     Long idSpecializareAngajat= scanner.nextLong();
+                    scanner.nextLine();
                     angajatDTO.setIdSpecializare(idSpecializareAngajat);
                     System.out.println("Introduceti numele angajatului: ");
                     String numeAngajat=scanner.nextLine();
@@ -77,6 +79,7 @@ public class Meniu {
                     angajatDTO.setPrenume(prenumeAngajat);
                     System.out.println("Introduceti salariul angajatului: ");
                     Integer salariuAngajat= scanner.nextInt();
+                    scanner.nextLine();
                     angajatDTO.setSalariu(salariuAngajat);
                     angajatServices.createAngajat(angajatDTO);
                     System.out.println(angajatServices.getAllAngajats());
@@ -107,8 +110,51 @@ public class Meniu {
                     System.out.println(afectiuneServices1.gelAllAfections());
                     System.out.println("Introduceti id-ul afectiunii, puteti alege din afectiunile de mai sus: ");
                     Integer idAfectiunePacient=scanner.nextInt();
+                    scanner.nextLine();
                     pacientDTO.setIdAfectiune(idAfectiunePacient);
-                    //...
+                    System.out.println("Introduceti numele pacientului: ");
+                    String numePacient=scanner.nextLine();
+                    pacientDTO.setNume(numePacient);
+                    System.out.println("Introduceti prenumele pacientului: ");
+                    String prenumePacient=scanner.nextLine();
+                    pacientDTO.setPrenume(prenumePacient);
+                    System.out.println("Introduceti varsta pacientului");
+                    Integer varstaPacient=scanner.nextInt();
+                    scanner.nextLine();
+                    pacientDTO.setVarsta(varstaPacient);
+                    //fac 0 aici si dupa ce creez programarea ii dau update la pacient(idProgramare)
+                    pacientDTO.setIdProgramare(0);
+                    pacientServices.createPacient(pacientDTO);
+                    System.out.println("Odata cu inregistrarea unui pacient trebuie sa introduceti si datele programarii: ");
+                    ProgramareServices programareServices2=context.getBean(ProgramareServices.class);
+                    ProgramareDTO programareDTO2=new ProgramareDTO();
+                    programareDTO2.setIdPacient(Math.toIntExact(pacientServices.getPacientIdByNumeAndPrenume(numePacient, prenumePacient)));
+                    AngajatServices angajatServices2=context.getBean(AngajatServices.class);
+                    System.out.println(angajatServices2.getAllAngajats());
+                    System.out.println("Introduceti id-ul angajatului, puteti alege din angajatii de mai sus: ");
+                    Integer idAngajatProgramare2= scanner.nextInt();
+                    scanner.nextLine();
+                    programareDTO2.setIdAngajat(idAngajatProgramare2);
+                    System.out.println("Introduceti data la care doriti sa fiti programat (yyyy-MM-dd): ");
+                    String dataString2 = scanner.nextLine();
+                    // Specificați formatul dorit pentru data
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    // Parsați șirul într-un obiect de tip LocalDate
+                    LocalDate data2 = LocalDate.parse(dataString2, formatter3);
+                    programareDTO2.setDataConsultatie(data2);
+                    System.out.println("Introduceti ora la care doriti sa fiti programat (HH:mm:ss): ");
+                    String oraString2 = scanner.nextLine();
+                    // Specificați formatul dorit pentru ora
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    // Parsați șirul într-un obiect de tip LocalTime
+                    LocalTime ora2 = LocalTime.parse(oraString2, formatter4);
+                    programareDTO2.setOraConsultatiei(ora2);
+                    programareServices2.createProgramare(programareDTO2);
+                    //update Pacient
+                    Integer idProgramare = programareDTO2.getIdProgramare();
+                    pacientServices.updateIdProgramare(numePacient,prenumePacient,idProgramare);
+                    System.out.println(pacientServices.getAllPacients());
+                    System.out.println(programareServices2.getAllProgramare());
                     break;
                 case 6:
                     ProceduraServices proceduraServices1=context.getBean(ProceduraServices.class);
@@ -120,16 +166,19 @@ public class Meniu {
                     System.out.println(afectiuneServices2.gelAllAfections());
                     System.out.println("Introduceti id-ul afectiunii, puteti alege din afectiunile de mai sus: ");
                     Integer idAfectiuneProcedura=scanner.nextInt();
+                    scanner.nextLine();
                     proceduraDTO.setIdAfectiune(idAfectiuneProcedura);
                     AparaturaServices aparaturaServices1=context.getBean(AparaturaServices.class);
                     System.out.println(aparaturaServices1.getAllAparaturas());
                     System.out.println("Introduceti id-ul aparaturii, puteti alege din aparaturile de mai sus: ");
                     Integer idAparaturaProcedura= scanner.nextInt();
+                    scanner.nextLine();
                     proceduraDTO.setIdAparatura(idAparaturaProcedura);
                     MaterialServices materialServices1=context.getBean(MaterialServices.class);
                     System.out.println(materialServices1.getAllMaterials());
                     System.out.println("Introduceti id-ul materialului, puteti alege din materialele de mai sus: ");
                     Integer idMaterialProcedura= scanner.nextInt();
+                    scanner.nextLine();
                     proceduraDTO.setIdMaterial(idMaterialProcedura);
                     proceduraServices1.createProcedura(proceduraDTO);
                     System.out.println(proceduraServices1.getAllProceduras());
@@ -141,11 +190,13 @@ public class Meniu {
                     System.out.println(pacientServices2.getAllPacients());
                     System.out.println("Introduceti id-ul pacientului, puteti alege din pacienti de mai sus: ");
                     Integer idPacientProgramare=scanner.nextInt();
+                    scanner.nextLine();
                     programareDTO.setIdPacient(idPacientProgramare);
                     AngajatServices angajatServices1=context.getBean(AngajatServices.class);
                     System.out.println(angajatServices1.getAllAngajats());
                     System.out.println("Introduceti id-ul angajatului, puteti alege din angajatii de mai sus: ");
                     Integer idAngajatProgramare= scanner.nextInt();
+                    scanner.nextLine();
                     programareDTO.setIdAngajat(idAngajatProgramare);
                     System.out.println("Introduceti data la care doriti sa fiti programat (yyyy-MM-dd): ");
                     String dataString = scanner.nextLine();
@@ -214,32 +265,58 @@ public class Meniu {
                 case 2:
                     AngajatServices angajatServices=context.getBean(AngajatServices.class);
                     System.out.println(angajatServices.getAllAngajats());
-                    System.out.println();
-                    System.out.print("Introduceti id-ul angajatului, putei alege din angajatii de mai sus: ");
+                    System.out.print("Introduceti id-ul angajatului, puteti alege din angajatii de mai sus: ");
                     Long idAngajat = scanner.nextLong();
                     angajatServices.deleteAngajatById(idAngajat);
                     System.out.println(angajatServices.getAllAngajats());
                     break;
                 case 3:
-
+                    AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    System.out.print("Introduceti id-ul aparaturii, puteti alege din aparaturile de mai sus: ");
+                    Long idAparatura = scanner.nextLong();
+                    aparaturaServices.deleteAparaturaById(idAparatura);
+                    System.out.println(aparaturaServices.getAllAparaturas());
                     break;
                 case 4:
                     MaterialServices materialServices=context.getBean(MaterialServices.class);
                     System.out.println(materialServices.getAllMaterials());
-                    System.out.print("Introduceti id-ul materialului, putei alege din materialele de mai sus: ");
+                    System.out.print("Introduceti id-ul materialului, puteti alege din materialele de mai sus: ");
                     Long idMaterial = scanner.nextLong();
                     materialServices.deleteMaterialById(idMaterial);
                     System.out.println(materialServices.getAllMaterials());
                     break;
                 case 5:
-
+                    PacientServices pacientServices=context.getBean(PacientServices.class);
+                    System.out.println(pacientServices.getAllPacients());
+                    System.out.print("Introduceti id-ul pacientului, puteti alege din pacientii de mai sus: ");
+                    Long idPacient = scanner.nextLong();
+                    pacientServices.deletePacientById(idPacient);
+                    System.out.println(pacientServices.getAllPacients());
                     break;
                 case 6:
-
+                    ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
+                    System.out.println(proceduraServices.getAllProceduras());
+                    System.out.print("Introduceti id-ul procedurii, puteti alege din procedurile de mai sus: ");
+                    Long idProcedura = scanner.nextLong();
+                    proceduraServices.deleteProceduraById(idProcedura);
+                    System.out.println(proceduraServices.getAllProceduras());
                     break;
                 case 7:
+                    ProgramareServices programareServices=context.getBean(ProgramareServices.class);
+                    System.out.println(programareServices.getAllProgramare());
+                    System.out.print("Introduceti id-ul programarii, puteti alege din programarile de mai sus: ");
+                    Long idProgramare = scanner.nextLong();
+                    programareServices.deleteProgramareById(idProgramare);
+                    System.out.println(programareServices.getAllProgramare());
                     break;
                 case 8:
+                    SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.println(specializareServices.getAllSpecializares());
+                    System.out.print("Introduceti id-ul specializarii, puteti alege din specializarile de mai sus: ");
+                    Long idSpecializare = scanner.nextLong();
+                    specializareServices.deleteSpecializareById(idSpecializare);
+                    System.out.println(specializareServices.getAllSpecializares());
                     break;
                 case 9:
                     meniuPrincipal();

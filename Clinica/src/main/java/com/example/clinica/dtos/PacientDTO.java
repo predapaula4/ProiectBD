@@ -1,5 +1,8 @@
 package com.example.clinica.dtos;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PacientDTO {
     private int idAfectiune;
     private int idProgramare;

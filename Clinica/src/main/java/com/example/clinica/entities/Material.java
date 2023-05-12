@@ -15,4 +15,5 @@ public class Material {
     private String denumire;
 
     public Material() {}
+
 }
