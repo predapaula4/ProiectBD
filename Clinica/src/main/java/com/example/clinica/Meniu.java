@@ -1,9 +1,24 @@
 package com.example.clinica;
 
-import dtos.*;
-import entities.*;
-import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer;
-import services.*;
+//import com.example.clinica.dtos.*;
+//import com.example.clinica.entities.*;
+//import com.example.clinica.services.*;
+
+import com.example.clinica.dtos.AfectiuneDTO;
+import com.example.clinica.entities.*;
+import com.example.clinica.services.AfectiuneServices;
+import com.example.clinica.dtos.ProceduraDTO;
+import com.example.clinica.services.ProceduraServices;
+import com.example.clinica.dtos.AngajatDTO;
+import com.example.clinica.services.AngajatServices;
+import com.example.clinica.dtos.AparaturaDTO;
+import com.example.clinica.services.AparaturaServices;
+import com.example.clinica.dtos.MaterialDTO;
+import com.example.clinica.services.MaterialServices;
+import com.example.clinica.dtos.PacientDTO;
+import com.example.clinica.services.PacientServices;
+
+// ... import other classes you need explicitly
 
 import java.util.List;
 import java.util.Scanner;

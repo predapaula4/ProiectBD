@@ -1,45 +1,26 @@
 package com.example.clinica;
 
-import dtos.MaterialDTO;
-import entities.Material;
-import entities.Procedura;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.event.EventListener;
-import services.MaterialServices;
-import services.PacientServices;
-import services.ProceduraServices;
+import org.springframework.context.ConfigurableApplicationContext;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Scanner;
 
-@SpringBootApplication(scanBasePackages = "com.example.clinica")
+@SpringBootApplication
 public class ClinicaApplication {
 
-    @Autowired
-    private final MaterialServices materialServices;
-
-    @Autowired
-    public ClinicaApplication(MaterialServices materialServices) {
-        this.materialServices = materialServices;
-    }
-
     public static void main(String[] args) {
-        SpringApplication.run(ClinicaApplication.class, args);
-    }
+        ConfigurableApplicationContext context = SpringApplication.run(ClinicaApplication.class, args);
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void doSomethingAfterStartup() {
-        List<Material> materials = materialServices.getAllMaterials();
-        for (Material material : materials) {
-            System.out.println(material);
+        DataSource dataSource = context.getBean(DataSource.class);
+
+        try (Connection connection = dataSource.getConnection()) {
+            System.out.println("Connected to database: " + connection.getCatalog());
+        } catch (SQLException ex) {
+            System.out.println("Connection failed");
+            ex.printStackTrace();
         }
     }
 }
