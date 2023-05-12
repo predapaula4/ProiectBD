@@ -43,7 +43,7 @@ public class Meniu {
             System.out.println("Pentru tabelul Procedura apasati tasta 6");
             System.out.println("Pentru tabelul Programare apasati tasta 7");
             System.out.println("Pentru tabelul Specializare apasati tasta 8");
-            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 10");
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
             System.out.print("Introduceti optiunea dorita: ");
             optiune = scanner.nextInt();
             switch (optiune) {
@@ -199,7 +199,7 @@ public class Meniu {
             System.out.println("Pentru tabelul Procedura apasati tasta 6");
             System.out.println("Pentru tabelul Programare apasati tasta 7");
             System.out.println("Pentru tabelul Specializare apasati tasta 8");
-            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 10");
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
             System.out.print("Introduceti optiunea dorita: ");
             optiune = scanner.nextInt();
             switch (optiune) {
