@@ -28,4 +28,8 @@ public class ProceduraServices {
     public List<Procedura> getAllProceduras() {
         return proceduraRepository.findAll();
     }
+    public void deleteProceduraById(Long id)
+    {
+        proceduraRepository.deleteById(id);
+    }
 }

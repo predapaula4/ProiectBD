@@ -28,4 +28,8 @@ public class AngajatServices {
     public List<Angajat> getAllAngajats() {
         return angajatRepository.findAll();
     }
+    public void deleteAngajatById(Long id)
+    {
+        angajatRepository.deleteById(id);
+    }
 }

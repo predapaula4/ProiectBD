@@ -28,4 +28,8 @@ public class SpecializareServices {
     public List<Specializare> getAllSpecializares() {
         return specializareRepository.findAll();
     }
+    public void deleteSpecializareById(Long id)
+    {
+        specializareRepository.deleteById(id);
+    }
 }

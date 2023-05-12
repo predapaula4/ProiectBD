@@ -28,4 +28,8 @@ public class AparaturaServices {
     public List<Aparatura> getAllAparaturas() {
         return aparaturaRepository.findAll();
     }
+    public void deleteAparaturaById(Long id)
+    {
+        aparaturaRepository.deleteById(id);
+    }
 }

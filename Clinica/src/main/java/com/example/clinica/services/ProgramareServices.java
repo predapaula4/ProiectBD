@@ -30,4 +30,8 @@ public class ProgramareServices {
     public List<Programare> getAllProgramare() {
         return programareRepository.findAll();
     }
+    public void deleteProgramareById(Long id)
+    {
+        programareRepository.deleteById(id);
+    }
 }

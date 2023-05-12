@@ -29,4 +29,8 @@ public class AfectiuneServices {
     public List<Afectiune> gelAllAfections() {
         return afectiuneRepository.findAll();
     }
+    public void deleteAfectiuneById(Long id)
+    {
+        afectiuneRepository.deleteById(id);
+    }
 }

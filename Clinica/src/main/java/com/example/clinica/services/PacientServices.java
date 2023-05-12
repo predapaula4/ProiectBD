@@ -31,4 +31,8 @@ public class PacientServices {
     public List<Pacient> getAllPacients() {
         return pacientRepository.findAll();
     }
+    public void deletePacientById(Long id)
+    {
+        pacientRepository.deleteById(id);
+    }
 }

@@ -16,6 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -203,25 +204,32 @@ public class Meniu {
             optiune = scanner.nextInt();
             switch (optiune) {
                 case 1:
-
+                    AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    System.out.println(afectiuneServices.gelAllAfections());
+                    System.out.println("Introduceti id-l afectiunii, puteti alege din afectiunile de mai sus:");
+                    Long idAfectiune=scanner.nextLong();
+                    afectiuneServices.deleteAfectiuneById(idAfectiune);
+                    System.out.println(afectiuneServices.gelAllAfections());
                     break;
                 case 2:
-
+                    AngajatServices angajatServices=context.getBean(AngajatServices.class);
+                    System.out.println(angajatServices.getAllAngajats());
+                    System.out.println();
+                    System.out.print("Introduceti id-ul angajatului, putei alege din angajatii de mai sus: ");
+                    Long idAngajat = scanner.nextLong();
+                    angajatServices.deleteAngajatById(idAngajat);
+                    System.out.println(angajatServices.getAllAngajats());
                     break;
                 case 3:
 
                     break;
                 case 4:
-                    MaterialServices materialService = new MaterialServices();
-                    Scanner patru = new Scanner(System.in);
-//                    List<Material> materials = materialService.getAllMaterials();
-//                    for (Material material : materials) {
-//                        System.out.println(material);
-//                    }
-                    System.out.print("Introduceți ID-ul materialului pe care doriți sa-l stergeti: ");
-                    Long materialId = patru.nextLong();
-                    materialService.deleteMaterialById(materialId);
-                    scanner.close();
+                    MaterialServices materialServices=context.getBean(MaterialServices.class);
+                    System.out.println(materialServices.getAllMaterials());
+                    System.out.print("Introduceti id-ul materialului, putei alege din materialele de mai sus: ");
+                    Long idMaterial = scanner.nextLong();
+                    materialServices.deleteMaterialById(idMaterial);
+                    System.out.println(materialServices.getAllMaterials());
                     break;
                 case 5:
 
