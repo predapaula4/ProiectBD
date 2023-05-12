@@ -1,7 +1,9 @@
 package com.example.clinica.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "aparatura")
 public class Aparatura {
@@ -22,19 +24,5 @@ public class Aparatura {
 
     public Aparatura() {}
 
-    public Long getIdAparatura() {
-        return idAparatura;
-    }
 
-    public void setIdAparatura(Long idAparatura) {
-        this.idAparatura = idAparatura;
-    }
-
-    public String getDenumire() {
-        return denumire;
-    }
-
-    public void setDenumire(String denumire) {
-        this.denumire = denumire;
-    }
 }

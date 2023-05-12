@@ -1,9 +1,10 @@
 package com.example.clinica.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 
-
+@Data
 @Entity
 @Table(name = "specializare")
 public class Specializare {
@@ -23,19 +24,5 @@ public class Specializare {
     }
     public Specializare() {}
 
-    public Long getIdSpecializare() {
-        return idSpecializare;
-    }
 
-    public void setIdSpecializare(Long idSpecializare) {
-        this.idSpecializare = idSpecializare;
-    }
-
-    public String getDenumire() {
-        return denumire;
-    }
-
-    public void setDenumire(String denumire) {
-        this.denumire = denumire;
-    }
 }

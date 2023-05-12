@@ -1,7 +1,9 @@
 package com.example.clinica.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "afectiune")
 public class Afectiune {
@@ -26,27 +28,5 @@ public class Afectiune {
 
     public Afectiune() {}
 
-    public Long getIdAfectiune() {
-        return idAfectiune;
-    }
 
-    public void setIdAfectiune(Long idAfectiune) {
-        this.idAfectiune = idAfectiune;
-    }
-
-    public String getDenumire() {
-        return denumire;
-    }
-
-    public void setDenumire(String denumire) {
-        this.denumire = denumire;
-    }
-
-    public int getIdProcedura() {
-        return idProcedura;
-    }
-
-    public void setIdProcedura(int idProcedura) {
-        this.idProcedura = idProcedura;
-    }
 }

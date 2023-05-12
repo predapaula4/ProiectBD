@@ -2,7 +2,9 @@ package com.example.clinica.entities;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "angajat")
 public class Angajat {
@@ -35,43 +37,5 @@ public class Angajat {
 
     public Angajat() {}
 
-    public int getIdAngajat() {
-        return idAngajat;
-    }
 
-    public void setIdAngajat(int idAngajat) {
-        this.idAngajat = idAngajat;
-    }
-
-    public int getIdSpecializare() {
-        return idSpecializare;
-    }
-
-    public void setIdSpecializare(int idSpecializare) {
-        this.idSpecializare = idSpecializare;
-    }
-
-    public String getNume() {
-        return nume;
-    }
-
-    public void setNume(String nume) {
-        this.nume = nume;
-    }
-
-    public String getPrenume() {
-        return prenume;
-    }
-
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
-    }
-
-    public int getSalariu() {
-        return salariu;
-    }
-
-    public void setSalariu(int salariu) {
-        this.salariu = salariu;
-    }
 }

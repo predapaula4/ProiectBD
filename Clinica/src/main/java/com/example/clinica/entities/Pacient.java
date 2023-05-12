@@ -1,7 +1,8 @@
 package com.example.clinica.entities;
 import jakarta.persistence.*;
+import lombok.Data;
 
-
+@Data
 @Entity
 @Table(name = "pacient")
 public class Pacient {
@@ -36,50 +37,5 @@ public class Pacient {
     }
     public Pacient() {}
 
-    public Long getIdPacient() {
-        return idPacient;
-    }
 
-    public void setIdPacient(Long idPacient) {
-        this.idPacient = idPacient;
-    }
-
-    public int getIdAfectiune() {
-        return idAfectiune;
-    }
-
-    public void setIdAfectiune(int idAfectiune) {
-        this.idAfectiune = idAfectiune;
-    }
-
-    public int getIdProgramare() {
-        return idProgramare;
-    }
-
-    public void setIdProgramare(int idProgramare) {
-        this.idProgramare = idProgramare;
-    }
-
-    public String getNume() {
-        return nume;
-    }
-    public void setNume(String nume) {
-        this.nume = nume;
-    }
-
-    public String getPrenume() {
-        return prenume;
-    }
-
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
-    }
-
-    public int getVarsta() {
-        return varsta;
-    }
-
-    public void setVarsta(int varsta) {
-        this.varsta = varsta;
-    }
 }
