@@ -4,27 +4,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PacientDTO {
-    private int idAfectiune;
-    private int idProgramare;
+    private Long idAfectiune;
+    private Long idProgramare;
     private String nume;
     private String prenume;
-    private int varsta;
+    private Long varsta;
 
     public PacientDTO() {}
 
-    public int getIdAfectiune() {
+    public Long getIdAfectiune() {
         return idAfectiune;
     }
 
-    public void setIdAfectiune(int idAfectiune) {
+    public void setIdAfectiune(Long idAfectiune) {
         this.idAfectiune = idAfectiune;
     }
 
-    public int getIdProgramare() {
+    public Long getIdProgramare() {
         return idProgramare;
     }
 
-    public void setIdProgramare(int idProgramare) {
+    public void setIdProgramare(Long idProgramare) {
         this.idProgramare = idProgramare;
     }
 
@@ -44,11 +44,11 @@ public class PacientDTO {
         this.prenume = prenume;
     }
 
-    public int getVarsta() {
+    public Long getVarsta() {
         return varsta;
     }
 
-    public void setVarsta(int varsta) {
+    public void setVarsta(Long varsta) {
         this.varsta = varsta;
     }
 }

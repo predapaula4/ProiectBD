@@ -16,10 +16,10 @@ public class Programare {
     private Long idProgramare;
 
     @Column(name = "idpacient")
-    private int idPacient;
+    private Long idPacient;
 
     @Column(name = "idangajat")
-    private int idAngajat;
+    private Long idAngajat;
 
     @Column(name = "dataconsultatie")
     private LocalDate dataConsultatie;

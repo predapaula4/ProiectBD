@@ -46,6 +46,7 @@ public class Meniu {
             System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
             System.out.print("Introduceti optiunea dorita: ");
             optiune = scanner.nextInt();
+            scanner.nextLine();
             switch (optiune) {
                 case 1:
                     AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
@@ -56,7 +57,7 @@ public class Meniu {
                     ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
                     System.out.println(proceduraServices.getAllProceduras());
                     System.out.println("Introduceti id-ul procedurii, puteti selecta din cele de mai sus: ");
-                    Integer idProceduraAfectiune=scanner.nextInt();
+                    Long idProceduraAfectiune=scanner.nextLong();
                     scanner.nextLine();
                     afectiuneDTO.setIdProcedura(idProceduraAfectiune);
                     afectiuneServices.createAfectiune(afectiuneDTO);
@@ -78,7 +79,7 @@ public class Meniu {
                     String prenumeAngajat=scanner.nextLine();
                     angajatDTO.setPrenume(prenumeAngajat);
                     System.out.println("Introduceti salariul angajatului: ");
-                    Integer salariuAngajat= scanner.nextInt();
+                    Long salariuAngajat= scanner.nextLong();
                     scanner.nextLine();
                     angajatDTO.setSalariu(salariuAngajat);
                     angajatServices.createAngajat(angajatDTO);
@@ -109,7 +110,7 @@ public class Meniu {
                     PacientDTO pacientDTO=new PacientDTO();
                     System.out.println(afectiuneServices1.gelAllAfections());
                     System.out.println("Introduceti id-ul afectiunii, puteti alege din afectiunile de mai sus: ");
-                    Integer idAfectiunePacient=scanner.nextInt();
+                    Long idAfectiunePacient=scanner.nextLong();
                     scanner.nextLine();
                     pacientDTO.setIdAfectiune(idAfectiunePacient);
                     System.out.println("Introduceti numele pacientului: ");
@@ -119,20 +120,20 @@ public class Meniu {
                     String prenumePacient=scanner.nextLine();
                     pacientDTO.setPrenume(prenumePacient);
                     System.out.println("Introduceti varsta pacientului");
-                    Integer varstaPacient=scanner.nextInt();
+                    Long varstaPacient=scanner.nextLong();
                     scanner.nextLine();
                     pacientDTO.setVarsta(varstaPacient);
                     //fac 0 aici si dupa ce creez programarea ii dau update la pacient(idProgramare)
-                    pacientDTO.setIdProgramare(0);
+                    pacientDTO.setIdProgramare(null);
                     pacientServices.createPacient(pacientDTO);
                     System.out.println("Odata cu inregistrarea unui pacient trebuie sa introduceti si datele programarii: ");
                     ProgramareServices programareServices2=context.getBean(ProgramareServices.class);
                     ProgramareDTO programareDTO2=new ProgramareDTO();
-                    programareDTO2.setIdPacient(Math.toIntExact(pacientServices.getPacientIdByNumeAndPrenume(numePacient, prenumePacient)));
+                    programareDTO2.setIdPacient((long) Math.toIntExact(pacientServices.getPacientIdByNumeAndPrenume(numePacient, prenumePacient)));
                     AngajatServices angajatServices2=context.getBean(AngajatServices.class);
                     System.out.println(angajatServices2.getAllAngajats());
                     System.out.println("Introduceti id-ul angajatului, puteti alege din angajatii de mai sus: ");
-                    Integer idAngajatProgramare2= scanner.nextInt();
+                    Long idAngajatProgramare2= scanner.nextLong();
                     scanner.nextLine();
                     programareDTO2.setIdAngajat(idAngajatProgramare2);
                     System.out.println("Introduceti data la care doriti sa fiti programat (yyyy-MM-dd): ");
@@ -151,7 +152,7 @@ public class Meniu {
                     programareDTO2.setOraConsultatiei(ora2);
                     programareServices2.createProgramare(programareDTO2);
                     //update Pacient
-                    Integer idProgramare = programareDTO2.getIdProgramare();
+                    Long idProgramare = programareDTO2.getIdProgramare();
                     pacientServices.updateIdProgramare(numePacient,prenumePacient,idProgramare);
                     System.out.println(pacientServices.getAllPacients());
                     System.out.println(programareServices2.getAllProgramare());
@@ -165,19 +166,19 @@ public class Meniu {
                     AfectiuneServices afectiuneServices2=context.getBean(AfectiuneServices.class);
                     System.out.println(afectiuneServices2.gelAllAfections());
                     System.out.println("Introduceti id-ul afectiunii, puteti alege din afectiunile de mai sus: ");
-                    Integer idAfectiuneProcedura=scanner.nextInt();
+                    Long idAfectiuneProcedura=scanner.nextLong();
                     scanner.nextLine();
                     proceduraDTO.setIdAfectiune(idAfectiuneProcedura);
                     AparaturaServices aparaturaServices1=context.getBean(AparaturaServices.class);
                     System.out.println(aparaturaServices1.getAllAparaturas());
                     System.out.println("Introduceti id-ul aparaturii, puteti alege din aparaturile de mai sus: ");
-                    Integer idAparaturaProcedura= scanner.nextInt();
+                    Long idAparaturaProcedura= scanner.nextLong();
                     scanner.nextLine();
                     proceduraDTO.setIdAparatura(idAparaturaProcedura);
                     MaterialServices materialServices1=context.getBean(MaterialServices.class);
                     System.out.println(materialServices1.getAllMaterials());
                     System.out.println("Introduceti id-ul materialului, puteti alege din materialele de mai sus: ");
-                    Integer idMaterialProcedura= scanner.nextInt();
+                    Long idMaterialProcedura= scanner.nextLong();
                     scanner.nextLine();
                     proceduraDTO.setIdMaterial(idMaterialProcedura);
                     proceduraServices1.createProcedura(proceduraDTO);
@@ -189,13 +190,13 @@ public class Meniu {
                     PacientServices pacientServices2=context.getBean(PacientServices.class);
                     System.out.println(pacientServices2.getAllPacients());
                     System.out.println("Introduceti id-ul pacientului, puteti alege din pacienti de mai sus: ");
-                    Integer idPacientProgramare=scanner.nextInt();
+                    Long idPacientProgramare=scanner.nextLong();
                     scanner.nextLine();
                     programareDTO.setIdPacient(idPacientProgramare);
                     AngajatServices angajatServices1=context.getBean(AngajatServices.class);
                     System.out.println(angajatServices1.getAllAngajats());
                     System.out.println("Introduceti id-ul angajatului, puteti alege din angajatii de mai sus: ");
-                    Integer idAngajatProgramare= scanner.nextInt();
+                    Long idAngajatProgramare= scanner.nextLong();
                     scanner.nextLine();
                     programareDTO.setIdAngajat(idAngajatProgramare);
                     System.out.println("Introduceti data la care doriti sa fiti programat (yyyy-MM-dd): ");
@@ -237,6 +238,7 @@ public class Meniu {
     scanner.close();
     }
     public void alegeTabelStergere() {
+        //la stergere de verificat daca exista id-ul in caz contrat afisare mesaj
         Scanner scanner = new Scanner(System.in);
         int optiune = 0;
 
@@ -253,6 +255,7 @@ public class Meniu {
             System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
             System.out.print("Introduceti optiunea dorita: ");
             optiune = scanner.nextInt();
+            scanner.nextLine();
             switch (optiune) {
                 case 1:
                     AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
@@ -341,6 +344,7 @@ public class Meniu {
             System.out.println("Pentru a iesi apasati tasta 4");
             System.out.print("Introduceti optiunea dorita: ");
             optiune2 = scanner2.nextInt();
+            scanner2.nextLine();
 
             switch (optiune2) {
                 case 1:

@@ -16,13 +16,13 @@ public class Procedura {
     private String denumire;
 
     @Column(name = "idafectiune")
-    private int idAfectiune;
+    private Long idAfectiune;
 
     @Column(name = "idaparatura")
-    private int idAparatura;
+    private Long idAparatura;
 
     @Column(name = "idmaterial")
-    private int idMaterial;
+    private Long idMaterial;
 
     @Override
     public String toString() {

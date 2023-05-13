@@ -11,10 +11,10 @@ public class Angajat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idangajat")
-    private int idAngajat;
+    private Long idAngajat;
 
     @Column(name = "idspecializare")
-    private int idSpecializare;
+    private Long idSpecializare;
 
     @Column(name = "nume", length = 20)
     private String nume;
@@ -23,7 +23,7 @@ public class Angajat {
     private String prenume;
 
     @Column(name = "salariu")
-    private int salariu;
+    private Long salariu;
     @Override
     public String toString() {
         return "Material{" +

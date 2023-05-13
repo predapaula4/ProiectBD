@@ -4,27 +4,27 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ProgramareDTO {
-    private int idProgramare;
-    private int idPacient;
-    private int idAngajat;
+    private Long idProgramare;
+    private Long idPacient;
+    private Long idAngajat;
     private LocalDate dataConsultatie;
     private LocalTime oraConsultatiei;
 
     public ProgramareDTO() {}
-    public int getIdProgramare(){return idProgramare;}
-    public int getIdPacient() {
+    public Long getIdProgramare(){return idProgramare;}
+    public Long getIdPacient() {
         return idPacient;
     }
 
-    public void setIdPacient(int idPacient) {
+    public void setIdPacient(Long idPacient) {
         this.idPacient = idPacient;
     }
 
-    public int getIdAngajat() {
+    public Long getIdAngajat() {
         return idAngajat;
     }
 
-    public void setIdAngajat(int idAngajat) {
+    public void setIdAngajat(Long idAngajat) {
         this.idAngajat = idAngajat;
     }
 

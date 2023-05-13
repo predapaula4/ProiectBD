@@ -16,7 +16,7 @@ public class Afectiune {
     private String denumire;
 
     @Column(name = "idprocedura")
-    private int idProcedura;
+    private Long idProcedura;
     @Override
     public String toString() {
         return "Material{" +

@@ -2,9 +2,9 @@ package com.example.clinica.dtos;
 
 public class ProceduraDTO {
     private String denumire;
-    private int idAfectiune;
-    private int idAparatura;
-    private int idMaterial;
+    private Long idAfectiune;
+    private Long idAparatura;
+    private Long idMaterial;
 
     public ProceduraDTO() {}
 
@@ -16,27 +16,27 @@ public class ProceduraDTO {
         this.denumire = denumire;
     }
 
-    public int getIdAfectiune() {
+    public Long getIdAfectiune() {
         return idAfectiune;
     }
 
-    public void setIdAfectiune(int idAfectiune) {
+    public void setIdAfectiune(Long idAfectiune) {
         this.idAfectiune = idAfectiune;
     }
 
-    public int getIdAparatura() {
+    public Long getIdAparatura() {
         return idAparatura;
     }
 
-    public void setIdAparatura(int idAparatura) {
+    public void setIdAparatura(Long idAparatura) {
         this.idAparatura = idAparatura;
     }
 
-    public int getIdMaterial() {
+    public Long getIdMaterial() {
         return idMaterial;
     }
 
-    public void setIdMaterial(int idMaterial) {
+    public void setIdMaterial(Long idMaterial) {
         this.idMaterial = idMaterial;
     }
 }

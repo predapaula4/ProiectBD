@@ -13,7 +13,13 @@ public class Material {
 
     @Column(name = "denumire")
     private String denumire;
-
+    @Override
+    public String toString() {
+        return "Material{" +
+                "idMaterial=" + idMaterial +
+                ", denumire='" + denumire + '\'' +
+                '}'+"\n";
+    }
     public Material() {}
 
 }

@@ -2,7 +2,7 @@ package com.example.clinica.dtos;
 
 public class AfectiuneDTO {
     private String denumire;
-    private int idProcedura;
+    private Long idProcedura;
 
     public AfectiuneDTO() {}
 
@@ -14,11 +14,11 @@ public class AfectiuneDTO {
         this.denumire = denumire;
     }
 
-    public int getIdProcedura() {
+    public Long getIdProcedura() {
         return idProcedura;
     }
 
-    public void setIdProcedura(int idProcedura) {
+    public void setIdProcedura(Long idProcedura) {
         this.idProcedura = idProcedura;
     }
 }

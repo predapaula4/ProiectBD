@@ -5,7 +5,7 @@ public class AngajatDTO {
     private Long idSpecializare;
     private String nume;
     private String prenume;
-    private int salariu;
+    private Long salariu;
 
     public AngajatDTO() {}
 
@@ -33,11 +33,11 @@ public class AngajatDTO {
         this.prenume = prenume;
     }
 
-    public int getSalariu() {
+    public Long getSalariu() {
         return salariu;
     }
 
-    public void setSalariu(int salariu) {
+    public void setSalariu(Long salariu) {
         this.salariu = salariu;
     }
 }

@@ -44,7 +44,7 @@ public class PacientServices {
         }
         return null; // sau aruncați o excepție sau gestionați cazul în funcție de nevoile dvs.
     }
-    public void updateIdProgramare(String nume, String prenume, int idProgramare) {
+    public void updateIdProgramare(String nume, String prenume, Long idProgramare) {
         Pacient pacient = pacientRepository.findByNumeAndPrenume(nume, prenume);
         if (pacient != null) {
             pacient.setIdProgramare(idProgramare);

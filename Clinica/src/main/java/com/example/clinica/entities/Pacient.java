@@ -12,10 +12,10 @@ public class Pacient {
     private Long idPacient;
 
     @Column(name = "idafectiune")
-    private int idAfectiune;
+    private Long idAfectiune;
 
     @Column(name = "idprogramare")
-    private int idProgramare;
+    private Long idProgramare;
 
     @Column(name = "nume", length = 20)
     private String nume;
@@ -24,7 +24,7 @@ public class Pacient {
     private String prenume;
 
     @Column(name = "varsta")
-    private int varsta;
+    private Long varsta;
 
     @Override
     public String toString() {

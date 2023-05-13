@@ -14,7 +14,7 @@ public class AngajatServices {
     private AngajatRepository angajatRepository;
     public void createAngajat(AngajatDTO angajatDTO) {
         Angajat angajat = new Angajat();
-        angajat.setIdSpecializare(Math.toIntExact(angajatDTO.getIdSpecializare()));
+        angajat.setIdSpecializare(Long.valueOf(Math.toIntExact(angajatDTO.getIdSpecializare())));
         angajat.setNume(angajatDTO.getNume());
         angajat.setPrenume(angajatDTO.getPrenume());
         angajat.setSalariu(angajatDTO.getSalariu());
