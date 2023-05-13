@@ -2,11 +2,13 @@ package com.example.clinica.services;
 
 import com.example.clinica.dtos.AfectiuneDTO;
 import com.example.clinica.entities.Afectiune;
+import com.example.clinica.entities.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.AfectiuneRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AfectiuneServices {
@@ -32,5 +34,17 @@ public class AfectiuneServices {
     public void deleteAfectiuneById(Long id)
     {
         afectiuneRepository.deleteById(id);
+    }
+
+    public void updateAfectiune(Long id, String denumire)
+    {
+        Optional<Afectiune> optionalAfectiune = afectiuneRepository.findById(id);
+        if (optionalAfectiune.isPresent()) {
+            Afectiune afectiune = optionalAfectiune.get();
+            afectiune.setDenumire(denumire);
+            afectiuneRepository.save(afectiune);
+        } else {
+            throw new RuntimeException("Material not found with id " + id);
+        }
     }
 }

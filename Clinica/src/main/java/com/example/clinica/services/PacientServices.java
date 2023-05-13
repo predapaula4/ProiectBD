@@ -1,12 +1,14 @@
 package com.example.clinica.services;
 
 import com.example.clinica.dtos.PacientDTO;
+import com.example.clinica.entities.Material;
 import com.example.clinica.entities.Pacient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.PacientRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PacientServices {
@@ -49,6 +51,18 @@ public class PacientServices {
         if (pacient != null) {
             pacient.setIdProgramare(idProgramare);
             pacientRepository.save(pacient);
+        }
+    }
+    public void updatePacient(Long id, String nume, String prenume)
+    {
+        Optional<Pacient> optionalPacient = pacientRepository.findById(id);
+        if (optionalPacient.isPresent()) {
+            Pacient pacient = optionalPacient.get();
+            pacient.setNume(nume);
+            pacient.setPrenume(prenume);
+            pacientRepository.save(pacient);
+        } else {
+            throw new RuntimeException("Material not found with id " + id);
         }
     }
 }

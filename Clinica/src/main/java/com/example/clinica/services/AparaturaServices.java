@@ -2,12 +2,14 @@ package com.example.clinica.services;
 
 import com.example.clinica.dtos.AparaturaDTO;
 import com.example.clinica.entities.Aparatura;
+import com.example.clinica.entities.Material;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.AparaturaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AparaturaServices {
@@ -31,5 +33,16 @@ public class AparaturaServices {
     public void deleteAparaturaById(Long id)
     {
         aparaturaRepository.deleteById(id);
+    }
+    public void updateAparatura(Long id, String denumire)
+    {
+        Optional<Aparatura> optionalAparatura = aparaturaRepository.findById(id);
+        if (optionalAparatura.isPresent()) {
+            Aparatura aparatura = optionalAparatura.get();
+            aparatura.setDenumire(denumire);
+            aparaturaRepository.save(aparatura);
+        } else {
+            throw new RuntimeException("Material not found with id " + id);
+        }
     }
 }

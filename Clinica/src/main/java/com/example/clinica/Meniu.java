@@ -332,6 +332,134 @@ public class Meniu {
         } while (optiune != 9);
         scanner.close();
     }
+    public void alegeTabelUpdate() {
+        Scanner scanner = new Scanner(System.in);
+        int optiune = 0;
+        do {
+            System.out.println("Tabelele pe care le puteti accesa sunt:");
+            System.out.println("Pentru tabelul Afectiune apasati tasta 1");
+            System.out.println("Pentru tabelul Angajat apasati tasta 2");
+            System.out.println("Pentru tabelul Aparatura apasati tasta 3");
+            System.out.println("Pentru tabelul Material apasati tasta 4");
+            System.out.println("Pentru tabelul Pacient apasati tasta 5");
+            System.out.println("Pentru tabelul Procedura apasati tasta 6");
+            System.out.println("Pentru tabelul Programare apasati tasta 7");
+            System.out.println("Pentru tabelul Specializare apasati tasta 8");
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
+            System.out.print("Introduceti optiunea dorita: ");
+            optiune = scanner.nextInt();
+            scanner.nextLine();
+            switch (optiune) {
+                case 1:
+                    AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    System.out.print("Introduceti id-ul afectiunii de actualizat, puteti alege din afectiunile de mai sus: ");
+                    Long idAfectiune = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Introduceti noua denumire: ");
+                    String denumireAfectiune = scanner.next();
+                    afectiuneServices.updateAfectiune(idAfectiune, denumireAfectiune);
+                    System.out.println(afectiuneServices.gelAllAfections());
+                    break;
+                case 2:
+                    AngajatServices angajatServices=context.getBean(AngajatServices.class);
+                    System.out.println(angajatServices.getAllAngajats());
+                    System.out.println("Introduceti id-ul angajatului de actualizat, puteti alege din angajatii de mai sus: ");
+                    Long idAngajat=scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.println("Introduceti numele angajatului: ");
+                    String numeAngajat=scanner.nextLine();
+                    System.out.println("Introduceti prenumele angajatului: ");
+                    String prenumeAngajat=scanner.nextLine();
+                    angajatServices.updateAngajat(idAngajat,numeAngajat,prenumeAngajat);
+                    System.out.println(angajatServices.getAllAngajats());
+                    break;
+                case 3:
+                    AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    System.out.print("Introduceti id-ul aparaturii de actualizat, puteti alege din aparaturile de mai sus: ");
+                    Long idAparatura = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Introduceti noua denumire: ");
+                    String denumireAparatura = scanner.next();
+                    aparaturaServices.updateAparatura(idAparatura, denumireAparatura);
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    break;
+                case 4:
+                    MaterialServices materialServices=context.getBean(MaterialServices.class);
+                    System.out.println(materialServices.getAllMaterials());
+                    System.out.print("Introduceti id-ul materialului de actualizat, puteti alege din materialele de mai sus: ");
+                    Long idMaterial = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Introduceti noua denumire: ");
+                    String denumireMaterial = scanner.next();
+                    materialServices.updateMaterial(idMaterial, denumireMaterial);
+                    System.out.println(materialServices.getAllMaterials());
+                    break;
+                case 5:
+                    PacientServices pacientServices=context.getBean(PacientServices.class);
+                    System.out.println(pacientServices.getAllPacients());
+                    System.out.println("Introduceti id-ul pacientului de actualizat, puteti alege din pacientii de mai sus: ");
+                    Long idPacient=scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.println("Introduceti numele pacientului: ");
+                    String numePacient=scanner.nextLine();
+                    System.out.println("Introduceti prenumele pecientului: ");
+                    String prenumePacient=scanner.nextLine();
+                    pacientServices.updatePacient(idPacient,numePacient,prenumePacient);
+                    System.out.println(pacientServices.getAllPacients());
+                    break;
+                case 6:
+                    ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
+                    System.out.println(proceduraServices.getAllProceduras());
+                    System.out.println("Introduceti id-ul procedurii de actualizat, puteti alege din procedurile de mai sus: ");
+                    Long idProcedura=scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.println("Introduceti noua denumire: ");
+                    String denumireProcedura=scanner.nextLine();
+                    proceduraServices.updateProcedura(idProcedura, denumireProcedura);
+                    System.out.println(proceduraServices.getAllProceduras());
+                    break;
+                case 7:
+                    ProgramareServices programareServices=context.getBean(ProgramareServices.class);
+                    System.out.println(programareServices.getAllProgramare());
+                    System.out.println("Introduceti id-ul programarii de actualizat, puteti alege din programarile de mai sus: ");
+                    Long idProgramare=scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.println("Introduceti noua data (yyyy-MM-dd): ");
+                    String dataProgramare=scanner.nextLine();
+                    System.out.println("Introduceti noua ora (HH:mm:ss): ");
+                    String oraProgramare=scanner.nextLine();
+                    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    // Parsați șirul într-un obiect de tip LocalDate
+                    LocalDate data = LocalDate.parse(dataProgramare, formatter3);
+                    DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    // Parsați șirul într-un obiect de tip LocalTime
+                    LocalTime ora = LocalTime.parse(oraProgramare, formatter4);
+                    programareServices.updateProgramare(idProgramare,data,ora );
+                    System.out.println(programareServices.getAllProgramare());
+                    break;
+                case 8:
+                    SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.println(specializareServices.getAllSpecializares());
+                    System.out.print("Introduceti id-ul specializarii de actualizat, puteti alege din specializarile de mai sus: ");
+                    Long idSpecializare = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Introduceti noua denumire: ");
+                    String denumireSpecializare = scanner.next();
+                    specializareServices.updateSpecializare(idSpecializare, denumireSpecializare);
+                    System.out.println(specializareServices.getAllSpecializares());
+                    break;
+                case 9:
+                    meniuPrincipal();
+                    break;
+                default :
+                    System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
+                    break;
+            }
+
+        } while (optiune != 9);
+        scanner.close();
+    }
     public void meniuPrincipal() {
         Scanner scanner2 = new Scanner(System.in);
         int optiune2 = 0;
@@ -360,7 +488,7 @@ public class Meniu {
                 case 3:
                     System.out.println("Ati selectat optiunea 4.");
                     System.out.println("Alegeti tabelul in care doriti sa modificati: ");
-                    //alegeTabelUpdate();
+                    alegeTabelUpdate();
                     break;
                 case 4:
                     System.out.println("La revedere!");
