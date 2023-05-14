@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.ProceduraRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +46,14 @@ public class ProceduraServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Procedura> sortProcedurasByDenumire() {
+        List<Procedura> proceduras = proceduraRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta procedurile în funcție de denumire
+        Comparator<Procedura> comparator = Comparator.comparing(Procedura::getDenumire);
+        Collections.sort(proceduras, comparator);
+
+        return proceduras;
     }
 }

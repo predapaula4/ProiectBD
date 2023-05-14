@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.AfectiuneRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,5 +48,14 @@ public class AfectiuneServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Afectiune> sortAfectiuniByDenumire() {
+        List<Afectiune> afectiuni = afectiuneRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta afectiunile în funcție de denumire
+        Comparator<Afectiune> comparator = Comparator.comparing(Afectiune::getDenumire);
+        Collections.sort(afectiuni, comparator);
+
+        return afectiuni;
     }
 }

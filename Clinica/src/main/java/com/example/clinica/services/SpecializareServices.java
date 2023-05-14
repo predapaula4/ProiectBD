@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.SpecializareRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,5 +47,14 @@ public class SpecializareServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Specializare> sortSpecializaresByDenumire() {
+        List<Specializare> specializares = specializareRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta specializările în funcție de denumire
+        Comparator<Specializare> comparator = Comparator.comparing(Specializare::getDenumire);
+        Collections.sort(specializares, comparator);
+
+        return specializares;
     }
 }

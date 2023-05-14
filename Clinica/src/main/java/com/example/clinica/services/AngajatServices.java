@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.AngajatRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,5 +47,23 @@ public class AngajatServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Angajat> sortAngajatiByNume() {
+        List<Angajat> angajati = angajatRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta angajații în funcție de nume
+        Comparator<Angajat> comparator = Comparator.comparing(Angajat::getNume);
+        Collections.sort(angajati, comparator);
+
+        return angajati;
+    }
+    public List<Angajat> sortAngajatiBySalariu() {
+        List<Angajat> angajati = angajatRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta angajații în funcție de salariu
+        Comparator<Angajat> comparator = Comparator.comparing(Angajat::getSalariu);
+        Collections.sort(angajati, comparator);
+
+        return angajati;
     }
 }

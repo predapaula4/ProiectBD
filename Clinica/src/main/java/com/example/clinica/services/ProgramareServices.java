@@ -2,6 +2,7 @@ package com.example.clinica.services;
 
 import com.example.clinica.dtos.ProgramareDTO;
 import com.example.clinica.entities.Material;
+import com.example.clinica.entities.Procedura;
 import com.example.clinica.entities.Programare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import com.example.clinica.repositories.ProgramareRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +52,24 @@ public class ProgramareServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Programare> sortProgramaresByData() {
+        List<Programare> programares = programareRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta programările în funcție de dată
+        Comparator<Programare> comparator = Comparator.comparing(Programare::getDataConsultatie);
+        Collections.sort(programares, comparator);
+
+        return programares;
+    }
+
+    public List<Programare> sortProgramaresByOra() {
+        List<Programare> programares = programareRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta programările în funcție de oră
+        Comparator<Programare> comparator = Comparator.comparing(Programare::getOraConsultatiei);
+        Collections.sort(programares, comparator);
+
+        return programares;
     }
 }

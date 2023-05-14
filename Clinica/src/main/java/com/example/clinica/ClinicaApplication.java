@@ -46,40 +46,7 @@ public class ClinicaApplication {
 //            int option = scanner.nextInt();
 //            scanner.nextLine();
 //
-//            switch (option) {
-//                case 1:
-////                    // Add material
-////                    MaterialDTO materialDTO = new MaterialDTO();
-////                    System.out.print("Introduceti denumirea: ");
-////                    String denumire = scanner.nextLine();
-////                    materialDTO.setDenumire(denumire);
-////                    materialServices.createMaterial(materialDTO);
-////                    break;
-//                case 2:
-//                    // Get material by ID
-//                    System.out.print("Introduceti id-ul materialului: ");
-//                    Long id = scanner.nextLong();
-//                    System.out.println(materialServices.getMaterialById(id));
-//                    break;
-//                case 3:
-//                    // Delete material by ID
-//                    System.out.print("Enter Material ID to delete: ");
-//                    id = scanner.nextLong();
-//                    materialServices.deleteMaterialById(id);
-//                    break;
-//                case 4:
-//                    // Update material
-//                    System.out.println(materialServices.getAllMaterials());
-//                    System.out.print("Introduceti id-ul materialului de actualizat: ");
-//                    id = scanner.nextLong();
-//                    System.out.print("Introduceti noua denumire: ");
-//                    denumire = scanner.next();
-//                    materialServices.updateMaterial(id, denumire);
-//                    break;
-//                case 5:
-//                    // List all materials
-//                    System.out.println(materialServices.getAllMaterials());
-//                    break;
+//
 //                case 6:
 //                    // Get material by denumire
 //                    System.out.print("Introduceti denumirea materialului: ");
@@ -97,14 +64,7 @@ public class ClinicaApplication {
 //                    denumire = scanner.nextLine();
 //                    materialServices.deleteMaterialByDenumire(denumire);
 //                    break;
-//                case 8:
-//                    System.out.println("Iesire din aplicatie.");
-//                    scanner.close();
-//                    System.exit(0);
-//                    break;
-//                default:
-//                    System.out.println("Optiune invalida.");
-//            }
+//
 //        }
 
     }

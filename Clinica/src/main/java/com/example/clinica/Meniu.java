@@ -352,6 +352,7 @@ public class Meniu {
             switch (optiune) {
                 case 1:
                     AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    System.out.println(afectiuneServices.gelAllAfections());
                     System.out.print("Introduceti id-ul afectiunii de actualizat, puteti alege din afectiunile de mai sus: ");
                     Long idAfectiune = scanner.nextLong();
                     scanner.nextLine();
@@ -460,16 +461,201 @@ public class Meniu {
         } while (optiune != 9);
         scanner.close();
     }
+    public void alegeTabelSortare() {
+        Scanner scanner = new Scanner(System.in);
+        int optiune = 0;
+        do {
+            System.out.println("Tabelele pe care le puteti accesa sunt:");
+            System.out.println("Pentru tabelul Afectiune apasati tasta 1");
+            System.out.println("Pentru tabelul Angajat apasati tasta 2");
+            System.out.println("Pentru tabelul Aparatura apasati tasta 3");
+            System.out.println("Pentru tabelul Material apasati tasta 4");
+            System.out.println("Pentru tabelul Pacient apasati tasta 5");
+            System.out.println("Pentru tabelul Procedura apasati tasta 6");
+            System.out.println("Pentru tabelul Programare apasati tasta 7");
+            System.out.println("Pentru tabelul Specializare apasati tasta 8");
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
+            System.out.print("Introduceti optiunea dorita: ");
+            optiune = scanner.nextInt();
+            scanner.nextLine();
+            switch (optiune) {
+                case 1:
+                    AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    System.out.println(afectiuneServices.gelAllAfections());
+                    System.out.print("Puteti sorta afectiunile in functie de denumire");
+                    List<Afectiune> sortedAfectiuni = afectiuneServices.sortAfectiuniByDenumire();
+                    System.out.println(sortedAfectiuni);
+                    break;
+                case 2:
+                    AngajatServices angajatServices=context.getBean(AngajatServices.class);
+                    System.out.println(angajatServices.getAllAngajats());
+                    System.out.println("Puteti sorta angajatii in functie de nume sau salariu: ");
+                    System.out.println("Pentru sortare in funtie de nume apasati tasta 1: ");
+                    System.out.println("Pentru sortare in funtie de salariu apasati tasta 2: ");
+                    Integer numeSalariu=scanner.nextInt();
+                    scanner.nextLine();
+                    if(numeSalariu==1) {
+                       List<Angajat> sortedAngajat=angajatServices.sortAngajatiByNume();
+                        System.out.println(sortedAngajat);
+                    }
+                    else {
+                        List<Angajat> sortedAngajat2=angajatServices.sortAngajatiBySalariu();
+                        System.out.println(sortedAngajat2);
+                    }
+                    break;
+                case 3:
+                    AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    System.out.print("Puteti sorta aparaturile in funtie de denumire: ");
+                    List<Aparatura> aparaturaSorted=aparaturaServices.sortAparaturiByDenumire();
+                    System.out.println(aparaturaSorted);
+                    break;
+                case 4:
+                    MaterialServices materialServices=context.getBean(MaterialServices.class);
+                    System.out.println(materialServices.getAllMaterials());
+                    System.out.print("Puteti sorta materialele in funtie de denumire: ");
+                    List<Material> sortedMaterial=materialServices.sortMaterialsByDenumire();
+                    System.out.println(sortedMaterial);
+                    break;
+                case 5:
+                    PacientServices pacientServices=context.getBean(PacientServices.class);
+                    System.out.println(pacientServices.getAllPacients());
+                    System.out.println("Puteti sorta pacientii in funtie de nume sau varsta: ");
+                    System.out.println("Pentru sortare in funtie de nume apasati tasta 1: ");
+                    System.out.println("Pentru sortare in funtie de varsta apasati tasta 2: ");
+                    Integer numeVarsta=scanner.nextInt();
+                    scanner.nextLine();
+                    if( numeVarsta==1) {
+                        List<Pacient> sortedPacient=pacientServices.sortPacientsByNume();
+                        System.out.println(sortedPacient);
+                    }
+                    else{
+                        List<Pacient> sortedPacient2=pacientServices.sortPacientsByNume();
+                        System.out.println(sortedPacient2);
+                    }
+                    break;
+                case 6:
+                    ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
+                    System.out.println(proceduraServices.getAllProceduras());
+                    System.out.println("Puteti sorta procedurile in funtie de denumire:  ");
+                    List<Procedura> sortedProcedura=proceduraServices.sortProcedurasByDenumire();
+                    System.out.println(sortedProcedura);
+                    break;
+                case 7:
+                    ProgramareServices programareServices=context.getBean(ProgramareServices.class);
+                    System.out.println(programareServices.getAllProgramare());
+                    System.out.println("Puteti sorta pacientii in funtie de data sau ora:  ");
+                    System.out.println("Pentru sortare in funtie de data apasati tasta 1: ");
+                    System.out.println("Pentru sortare in funtie de ora apasati tasta 2: ");
+                    Integer dataOra=scanner.nextInt();
+                    scanner.nextLine();
+                    if( dataOra==1) {
+                        List<Programare> sortedProgramare=programareServices.sortProgramaresByData();
+                        System.out.println(sortedProgramare);
+                    }
+                    else{
+                        List<Programare> sortedProgramare2=programareServices.sortProgramaresByOra();
+                        System.out.println(sortedProgramare2);
+                    }
+                    break;
+                case 8:
+                    SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.println(specializareServices.getAllSpecializares());
+                    System.out.print("Puteti sorta specializarile in funtie de denumire: ");
+                    List<Specializare> sortedSpecializare=specializareServices.sortSpecializaresByDenumire();
+                    System.out.println(sortedSpecializare);
+                    break;
+                case 9:
+                    meniuPrincipal();
+                    break;
+                default :
+                    System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
+                    break;
+            }
+
+        } while (optiune != 9);
+        scanner.close();
+    }
+    public void afisareToateDateleTabel() {
+        Scanner scanner = new Scanner(System.in);
+        int optiune = 0;
+        do {
+            System.out.println("Tabelele pe care le puteti accesa sunt:");
+            System.out.println("Pentru tabelul Afectiune apasati tasta 1");
+            System.out.println("Pentru tabelul Angajat apasati tasta 2");
+            System.out.println("Pentru tabelul Aparatura apasati tasta 3");
+            System.out.println("Pentru tabelul Material apasati tasta 4");
+            System.out.println("Pentru tabelul Pacient apasati tasta 5");
+            System.out.println("Pentru tabelul Procedura apasati tasta 6");
+            System.out.println("Pentru tabelul Programare apasati tasta 7");
+            System.out.println("Pentru tabelul Specializare apasati tasta 8");
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 9");
+            System.out.print("Introduceti optiunea dorita: ");
+            optiune = scanner.nextInt();
+            scanner.nextLine();
+            switch (optiune) {
+                case 1:
+                    AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    System.out.println("Datele din tabelul afectiune sunt:");
+                    System.out.println(afectiuneServices.gelAllAfections());
+                    break;
+                case 2:
+                    AngajatServices angajatServices=context.getBean(AngajatServices.class);
+                    System.out.println("Datele din tabelul angajat sunt: ");
+                    System.out.println(angajatServices.getAllAngajats());
+                    break;
+                case 3:
+                    AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
+                    System.out.print("Datele din tabelul aparatura sunt: ");
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    break;
+                case 4:
+                    MaterialServices materialServices=context.getBean(MaterialServices.class);
+                    System.out.print("Datele din tabelul material sunt:  ");
+                    System.out.println(materialServices.getAllMaterials());
+                    break;
+                case 5:
+                    PacientServices pacientServices=context.getBean(PacientServices.class);
+                    System.out.println("Datele din tabelul pacient sunt; ");
+                    System.out.println(pacientServices.getAllPacients());
+                    break;
+                case 6:
+                    ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
+                    System.out.println("Datele din tabelul procedura sunt:  ");
+                    System.out.println(proceduraServices.getAllProceduras());
+                    break;
+                case 7:
+                    ProgramareServices programareServices=context.getBean(ProgramareServices.class);
+                    System.out.println("Datele din tabelul programare sunt:  ");
+                    System.out.println(programareServices.getAllProgramare());
+                    break;
+                case 8:
+                    SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.print("Datele din tabelul specializare sunt: ");
+                    System.out.println(specializareServices.getAllSpecializares());
+                    break;
+                case 9:
+                    meniuPrincipal();
+                    break;
+                default :
+                    System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
+                    break;
+            }
+
+        } while (optiune != 9);
+        scanner.close();
+    }
     public void meniuPrincipal() {
         Scanner scanner2 = new Scanner(System.in);
         int optiune2 = 0;
 
         do {
-
-            System.out.println("Pentru inserarea datelor intr un tabel apasati tasta 1");
-            System.out.println("Pentru stergerea datelor dintr un tabel in functie de id apasati tasta 2");
-            System.out.println("Pentru a modifica date dintr un tabel apasati tasta 3");
-            System.out.println("Pentru a iesi apasati tasta 4");
+            System.out.println("Pentru afisarea tuturor datelor dintr un tabel apasati tasta 1");
+            System.out.println("Pentru inserarea datelor intr un tabel apasati tasta 2");
+            System.out.println("Pentru stergerea datelor dintr un tabel in functie de id apasati tasta 3");
+            System.out.println("Pentru a modifica date dintr un tabel apasati tasta 4");
+            System.out.println("Pentru a sorat date dintr un tabel apasati tasta 5 ");
+            System.out.println("Pentru a iesi apasati tasta 6");
             System.out.print("Introduceti optiunea dorita: ");
             optiune2 = scanner2.nextInt();
             scanner2.nextLine();
@@ -477,27 +663,36 @@ public class Meniu {
             switch (optiune2) {
                 case 1:
                     System.out.println("Ati selectat optiunea 1.");
+                    afisareToateDateleTabel();
+                    break;
+                case 2:
+                    System.out.println("Ati selectat optiunea 2.");
                     System.out.println("Alegeti tabelul in care doriti sa inserati: ");
                     alegeTabelInserare();
                     break;
-                case 2:
+                case 3:
                     System.out.println("Ati selectat optiunea 3.");
                     System.out.println("Alegeti tabelul din care doriti sa stergeti: ");
                     alegeTabelStergere();
                     break;
-                case 3:
+                case 4:
                     System.out.println("Ati selectat optiunea 4.");
                     System.out.println("Alegeti tabelul in care doriti sa modificati: ");
                     alegeTabelUpdate();
                     break;
-                case 4:
+                case 5:
+                    System.out.println("Ati selectat optiunea 5.");
+                    System.out.println("Alegeti tabelul in care doriti sa modificati: ");
+                    alegeTabelSortare();
+                    break;
+                case 6:
                     System.out.println("La revedere!");
                     break;
                 default:
                     System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
                     break;
             }
-        } while (optiune2 != 4);
+        } while (optiune2 != 7);
 
         scanner2.close();
     }

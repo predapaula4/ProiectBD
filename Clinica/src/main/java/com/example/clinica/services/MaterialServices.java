@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.MaterialRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,5 +64,14 @@ public class MaterialServices {
     public List<Material> getAllMaterials()
     {
         return materialRepository.findAll();
+    }
+    public List<Material> sortMaterialsByDenumire() {
+        List<Material> materials = materialRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta materialele în funcție de denumire
+        Comparator<Material> comparator = Comparator.comparing(Material::getDenumire);
+        Collections.sort(materials, comparator);
+
+        return materials;
     }
 }

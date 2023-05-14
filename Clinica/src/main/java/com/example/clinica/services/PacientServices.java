@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.PacientRepository;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +66,23 @@ public class PacientServices {
         } else {
             throw new RuntimeException("Material not found with id " + id);
         }
+    }
+    public List<Pacient> sortPacientsByNume() {
+        List<Pacient> pacienti = pacientRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta pacienții în funcție de nume
+        Comparator<Pacient> comparator = Comparator.comparing(Pacient::getNume);
+        Collections.sort(pacienti, comparator);
+
+        return pacienti;
+    }
+    public List<Pacient> sortPacientsByVarsta() {
+        List<Pacient> pacienti = pacientRepository.findAll();
+
+        // Utilizăm un Comparator pentru a sorta pacienții în funcție de vârstă
+        Comparator<Pacient> comparator = Comparator.comparing(Pacient::getVarsta);
+        Collections.sort(pacienti, comparator);
+
+        return pacienti;
     }
 }
