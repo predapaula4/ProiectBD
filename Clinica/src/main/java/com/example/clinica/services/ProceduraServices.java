@@ -2,6 +2,7 @@ package com.example.clinica.services;
 
 import com.example.clinica.dtos.ProceduraDTO;
 import com.example.clinica.entities.Material;
+import com.example.clinica.entities.Pacient;
 import com.example.clinica.entities.Procedura;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,9 @@ public class ProceduraServices {
         Collections.sort(proceduras, comparator);
 
         return proceduras;
+    }
+    public List<Procedura> filetrProceduraByAparatura(Long idAparatura) {
+        return proceduraRepository.findByAparaturaId(idAparatura);
+
     }
 }

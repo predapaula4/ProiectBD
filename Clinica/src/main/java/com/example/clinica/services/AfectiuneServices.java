@@ -2,6 +2,7 @@ package com.example.clinica.services;
 
 import com.example.clinica.dtos.AfectiuneDTO;
 import com.example.clinica.entities.Afectiune;
+import com.example.clinica.entities.Angajat;
 import com.example.clinica.entities.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,5 +58,8 @@ public class AfectiuneServices {
         Collections.sort(afectiuni, comparator);
 
         return afectiuni;
+    }
+    public List<Afectiune> filterAfectiuneByProcedura(Long idProcedura) {
+        return afectiuneRepository.findByProgramareId(idProcedura);
     }
 }

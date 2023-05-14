@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.clinica.repositories.AngajatRepository;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AngajatServices {
@@ -66,4 +63,8 @@ public class AngajatServices {
 
         return angajati;
     }
+    public List<Angajat> filterAngajatiBySpecializare(Long idSpecializare) {
+        return angajatRepository.findBySpecializareId(idSpecializare);
+    }
+
 }

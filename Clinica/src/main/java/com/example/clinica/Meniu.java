@@ -4,6 +4,7 @@ package com.example.clinica;
 //import com.example.clinica.entities.*;
 //import com.example.clinica.services.*;
 
+import com.example.clinica.controllers.ProceduraController;
 import com.example.clinica.dtos.*;
 import com.example.clinica.entities.*;
 import com.example.clinica.services.*;
@@ -645,6 +646,105 @@ public class Meniu {
         } while (optiune != 9);
         scanner.close();
     }
+    public void filtrareTabele() {
+        Scanner scanner = new Scanner(System.in);
+        int optiune = 0;
+        do {
+            System.out.println("Tabelele pe care le puteti accesa sunt:");
+            System.out.println("Pentru tabelul Afectiune apasati tasta 1");
+            System.out.println("Pentru tabelul Angajat apasati tasta 2");
+            System.out.println("Pentru tabelul Pacient apasati tasta 3");
+            System.out.println("Pentru tabelul Procedura apasati tasta 4");
+            System.out.println("Pentru tabelul Programare apasati tasta 5");;
+            System.out.println("Pentru a iesi din acest meniu si a va intoarce la meniul principal apasati tasta 6");
+            System.out.print("Introduceti optiunea dorita: ");
+            optiune = scanner.nextInt();
+            scanner.nextLine();
+            switch (optiune) {
+                case 1:
+                    AfectiuneServices afectiuneServices=context.getBean(AfectiuneServices.class);
+                    ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
+                    System.out.println(proceduraServices.getAllProceduras());
+                    System.out.println("Puteti filtra afectiunile in funtie de procedura, puteti alege din procedurile de mai sus: ");
+                    System.out.println("Introduceti id-ul procedurii: ");
+                    Long idProceduraAfetiune=scanner.nextLong();
+                    scanner.nextLine();
+                    List<Afectiune> afectiuniFiltrate=afectiuneServices.filterAfectiuneByProcedura(idProceduraAfetiune);
+                    System.out.println(afectiuniFiltrate);
+                    break;
+                case 2:
+                    AngajatServices angajatServices=context.getBean(AngajatServices.class);
+                    SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.println("Puteti filtra angajatii in funtie de specializare, puteti alege din specializarile de mai sus: ");
+                    System.out.println("Introduceti id-ul specialiarii: ");
+                    Long idSpecializareAngajat=scanner.nextLong();
+                    scanner.nextLine();
+                    List<Angajat> angajatiFiltrati = angajatServices.filterAngajatiBySpecializare(idSpecializareAngajat);
+                    System.out.println(angajatiFiltrati);
+                    break;
+                case 3:
+                    PacientServices pacientServices=context.getBean(PacientServices.class);
+                    AfectiuneServices afectiuneServices1=context.getBean(AfectiuneServices.class);
+                    System.out.println(afectiuneServices1.gelAllAfections());
+                    System.out.println("Puteti filtra pacientii in funtie de afectiune, puteti alege din afectiunile de mai sus: ");
+                    System.out.println("Introduceti id-ul afectiunii: ");
+                    Long idAfectiunePacient=scanner.nextLong();
+                    scanner.nextLine();
+                    List<Pacient> pacientiFiltrati=pacientServices.filterPacientByAfectiune(idAfectiunePacient);
+                    System.out.println(pacientiFiltrati);
+                    break;
+                case 4:
+                    ProceduraServices proceduraServices1=context.getBean(ProceduraServices.class);
+                    AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
+                    System.out.println(aparaturaServices.getAllAparaturas());
+                    System.out.println("Puteti filtra procedurile in funtie de aparatura, puteti alege din aparaturile de mai sus: ");
+                    System.out.println("Introduceti id-ul aparaturii: ");
+                    Long idAparaturaProcedura=scanner.nextLong();
+                    scanner.nextLine();
+                    List<Procedura> proceduriFiltate=proceduraServices1.filetrProceduraByAparatura(idAparaturaProcedura);
+                    System.out.println(proceduriFiltate);
+                    break;
+                case 5:
+                    ProgramareServices programareServices=context.getBean(ProgramareServices.class);
+                    System.out.println( programareServices.getAllProgramare());
+                    System.out.println("Puteti filtra programarile  in functie de data sau de ora.");
+                    System.out.println("Pentru a filtra in functie de data apasati tasta 1:");
+                    System.out.println("Pentru a filtra in functie de ora apasati tasta 2:");
+                    Integer dataOra=scanner.nextInt();
+                    scanner.nextLine();
+                    if(dataOra==1){
+                        System.out.println("Introduceti data (yyyy-MM-dd), puteti alege din tabelul de mai sus");
+                        String dataProgramare=scanner.nextLine();
+                        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        // Parsați șirul într-un obiect de tip LocalDate
+                        LocalDate data = LocalDate.parse(dataProgramare, formatter3);
+                        List<Programare> programariFiltrateByData = programareServices.filterProgramariByData(data);
+                        System.out.println("Programările cu data specificată:");
+                        System.out.println(programariFiltrateByData);
+                    }
+                   else{
+                        System.out.println("Introduceti ora (HH:mm:ss), puteti alege din tabelul de mai sus");
+                        String oraString2 = scanner.nextLine();
+                        // Specificați formatul dorit pentru ora
+                        DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                        // Parsați șirul într-un obiect de tip LocalTime
+                        LocalTime ora = LocalTime.parse(oraString2, formatter4);
+                        List<Programare> programariFiltrateByOra = programareServices.filterProgramariByOra(ora);
+                        System.out.println("Programările cu ora specificată:");
+                        System.out.println(programariFiltrateByOra);
+                    }
+                    break;
+                case 6:
+                    meniuPrincipal();
+                    break;
+                default :
+                    System.out.println("Optiunea introdusa este invalida. Va rugam sa incercati din nou.");
+                    break;
+            }
+
+        } while (optiune != 6);
+        scanner.close();
+    }
     public void meniuPrincipal() {
         Scanner scanner2 = new Scanner(System.in);
         int optiune2 = 0;
@@ -655,7 +755,8 @@ public class Meniu {
             System.out.println("Pentru stergerea datelor dintr un tabel in functie de id apasati tasta 3");
             System.out.println("Pentru a modifica date dintr un tabel apasati tasta 4");
             System.out.println("Pentru a sorat date dintr un tabel apasati tasta 5 ");
-            System.out.println("Pentru a iesi apasati tasta 6");
+            System.out.println("Pentru a filtra date dintr un tabelapasati tasta 6");
+            System.out.println("Pentru a iesi apasati tasta 7");
             System.out.print("Introduceti optiunea dorita: ");
             optiune2 = scanner2.nextInt();
             scanner2.nextLine();
@@ -686,6 +787,11 @@ public class Meniu {
                     alegeTabelSortare();
                     break;
                 case 6:
+                    System.out.println("Ati selectat optiunea 6.");
+                    System.out.println("Alegeti tabelul in care doriti sa modificati: ");
+                    filtrareTabele();
+                    break;
+                case 7:
                     System.out.println("La revedere!");
                     break;
                 default:

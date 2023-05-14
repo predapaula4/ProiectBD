@@ -1,6 +1,7 @@
 package com.example.clinica.services;
 
 import com.example.clinica.dtos.PacientDTO;
+import com.example.clinica.entities.Angajat;
 import com.example.clinica.entities.Material;
 import com.example.clinica.entities.Pacient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,5 +85,8 @@ public class PacientServices {
         Collections.sort(pacienti, comparator);
 
         return pacienti;
+    }
+    public List<Pacient> filterPacientByAfectiune(Long idAfectiune) {
+        return pacientRepository.findByAfectiuneId(idAfectiune);
     }
 }
