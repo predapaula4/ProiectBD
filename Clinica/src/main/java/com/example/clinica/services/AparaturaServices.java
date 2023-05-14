@@ -50,7 +50,6 @@ public class AparaturaServices {
     public List<Aparatura> sortAparaturiByDenumire() {
         List<Aparatura> aparaturi = aparaturaRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta aparaturile în funcție de denumire
         Comparator<Aparatura> comparator = Comparator.comparing(Aparatura::getDenumire);
         Collections.sort(aparaturi, comparator);
 

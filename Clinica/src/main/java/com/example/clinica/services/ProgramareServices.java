@@ -56,7 +56,6 @@ public class ProgramareServices {
     public List<Programare> sortProgramaresByData() {
         List<Programare> programares = programareRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta programările în funcție de dată
         Comparator<Programare> comparator = Comparator.comparing(Programare::getDataConsultatie);
         Collections.sort(programares, comparator);
 
@@ -66,7 +65,6 @@ public class ProgramareServices {
     public List<Programare> sortProgramaresByOra() {
         List<Programare> programares = programareRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta programările în funcție de oră
         Comparator<Programare> comparator = Comparator.comparing(Programare::getOraConsultatiei);
         Collections.sort(programares, comparator);
 

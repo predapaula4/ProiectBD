@@ -51,7 +51,6 @@ public class ProceduraServices {
     public List<Procedura> sortProcedurasByDenumire() {
         List<Procedura> proceduras = proceduraRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta procedurile în funcție de denumire
         Comparator<Procedura> comparator = Comparator.comparing(Procedura::getDenumire);
         Collections.sort(proceduras, comparator);
 

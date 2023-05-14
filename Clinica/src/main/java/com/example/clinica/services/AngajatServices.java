@@ -48,7 +48,6 @@ public class AngajatServices {
     public List<Angajat> sortAngajatiByNume() {
         List<Angajat> angajati = angajatRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta angajații în funcție de nume
         Comparator<Angajat> comparator = Comparator.comparing(Angajat::getNume);
         Collections.sort(angajati, comparator);
 
@@ -57,7 +56,6 @@ public class AngajatServices {
     public List<Angajat> sortAngajatiBySalariu() {
         List<Angajat> angajati = angajatRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta angajații în funcție de salariu
         Comparator<Angajat> comparator = Comparator.comparing(Angajat::getSalariu);
         Collections.sort(angajati, comparator);
 

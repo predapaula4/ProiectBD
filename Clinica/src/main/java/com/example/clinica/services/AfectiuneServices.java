@@ -53,7 +53,6 @@ public class AfectiuneServices {
     public List<Afectiune> sortAfectiuniByDenumire() {
         List<Afectiune> afectiuni = afectiuneRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta afectiunile în funcție de denumire
         Comparator<Afectiune> comparator = Comparator.comparing(Afectiune::getDenumire);
         Collections.sort(afectiuni, comparator);
 

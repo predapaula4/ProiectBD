@@ -51,7 +51,6 @@ public class SpecializareServices {
     public List<Specializare> sortSpecializaresByDenumire() {
         List<Specializare> specializares = specializareRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta specializările în funcție de denumire
         Comparator<Specializare> comparator = Comparator.comparing(Specializare::getDenumire);
         Collections.sort(specializares, comparator);
 

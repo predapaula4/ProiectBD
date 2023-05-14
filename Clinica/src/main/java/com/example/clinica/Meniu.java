@@ -1,23 +1,10 @@
 package com.example.clinica;
 
-//import com.example.clinica.dtos.*;
-//import com.example.clinica.entities.*;
-//import com.example.clinica.services.*;
-
-import com.example.clinica.controllers.ProceduraController;
 import com.example.clinica.dtos.*;
 import com.example.clinica.entities.*;
 import com.example.clinica.services.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-// ... import other classes you need explicitly
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +13,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Meniu {
+
 
     private ConfigurableApplicationContext context;
 
@@ -532,7 +520,7 @@ public class Meniu {
                         System.out.println(sortedPacient);
                     }
                     else{
-                        List<Pacient> sortedPacient2=pacientServices.sortPacientsByNume();
+                        List<Pacient> sortedPacient2=pacientServices.sortPacientsByVarsta();
                         System.out.println(sortedPacient2);
                     }
                     break;
@@ -667,6 +655,7 @@ public class Meniu {
                     ProceduraServices proceduraServices=context.getBean(ProceduraServices.class);
                     System.out.println(proceduraServices.getAllProceduras());
                     System.out.println("Puteti filtra afectiunile in funtie de procedura, puteti alege din procedurile de mai sus: ");
+                    proceduraServices.getAllProceduras();
                     System.out.println("Introduceti id-ul procedurii: ");
                     Long idProceduraAfetiune=scanner.nextLong();
                     scanner.nextLine();
@@ -683,6 +672,7 @@ public class Meniu {
                     AngajatServices angajatServices=context.getBean(AngajatServices.class);
                     SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
                     System.out.println("Puteti filtra angajatii in funtie de specializare, puteti alege din specializarile de mai sus: ");
+                    specializareServices.getAllSpecializares();
                     System.out.println("Introduceti id-ul specialiarii: ");
                     Long idSpecializareAngajat=scanner.nextLong();
                     scanner.nextLine();
@@ -701,6 +691,7 @@ public class Meniu {
                     AfectiuneServices afectiuneServices1=context.getBean(AfectiuneServices.class);
                     System.out.println(afectiuneServices1.gelAllAfections());
                     System.out.println("Puteti filtra pacientii in funtie de afectiune, puteti alege din afectiunile de mai sus: ");
+                    afectiuneServices1.gelAllAfections();
                     System.out.println("Introduceti id-ul afectiunii: ");
                     Long idAfectiunePacient=scanner.nextLong();
                     scanner.nextLine();
@@ -718,6 +709,7 @@ public class Meniu {
                     AparaturaServices aparaturaServices=context.getBean(AparaturaServices.class);
                     System.out.println(aparaturaServices.getAllAparaturas());
                     System.out.println("Puteti filtra procedurile in funtie de aparatura, puteti alege din aparaturile de mai sus: ");
+                    aparaturaServices.getAllAparaturas();
                     System.out.println("Introduceti id-ul aparaturii: ");
                     Long idAparaturaProcedura=scanner.nextLong();
                     scanner.nextLine();
@@ -735,44 +727,35 @@ public class Meniu {
                 case 5:
                     ProgramareServices programareServices=context.getBean(ProgramareServices.class);
                     System.out.println( programareServices.getAllProgramare());
-                    System.out.println("Puteti filtra programarile  in functie de data sau de ora.");
+                    System.out.println("Puteti filtra programarile in functie de data sau de ora.");
                     System.out.println("Pentru a filtra in functie de data apasati tasta 1:");
                     System.out.println("Pentru a filtra in functie de ora apasati tasta 2:");
                     Integer dataOra=scanner.nextInt();
                     scanner.nextLine();
-                    if(dataOra==1){
+                    if (dataOra == 1) {
                         System.out.println("Introduceti data (yyyy-MM-dd), puteti alege din tabelul de mai sus");
-                        String dataProgramare=scanner.nextLine();
+                        String dataProgramare = scanner.nextLine();
                         DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                        // Parsați șirul într-un obiect de tip LocalDate
                         LocalDate data = LocalDate.parse(dataProgramare, formatter3);
-                        List<Programare> programares=programareServices.getAllProgramare();
-                        for(Programare  programare:programares)
-                        {
-                            if(programare.getDataConsultatie()==data)
-                            {
+                        List<Programare> programares = programareServices.getAllProgramare();
+                        for (Programare programare : programares) {
+                            if (programare.getDataConsultatie().equals(data)) {
                                 System.out.println(programare);
                                 System.out.println('\n');
                             }
                         }
-                    }
-                   else
-                       if(dataOra==2){
+                    } else if (dataOra == 2) {
                         System.out.println("Introduceti ora (HH:mm:ss), puteti alege din tabelul de mai sus");
                         String oraString2 = scanner.nextLine();
-                        // Specificați formatul dorit pentru ora
                         DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("HH:mm:ss");
-                        // Parsați șirul într-un obiect de tip LocalTime
                         LocalTime ora = LocalTime.parse(oraString2, formatter4);
-                        List<Programare> programares=programareServices.getAllProgramare();
-                        for(Programare  programare:programares)
-                           {
-                               if(programare.getOraConsultatiei()==ora)
-                               {
-                                   System.out.println(programare);
-                                   System.out.println('\n');
-                               }
-                           }
+                        List<Programare> programares = programareServices.getAllProgramare();
+                        for (Programare programare : programares) {
+                            if (programare.getOraConsultatiei().equals(ora)) {
+                                System.out.println(programare);
+                                System.out.println('\n');
+                            }
+                        }
                     }
                     break;
                 case 6:
@@ -791,12 +774,13 @@ public class Meniu {
         int optiune2 = 0;
 
         do {
-            System.out.println("Pentru afisarea tuturor datelor dintr un tabel apasati tasta 1");
-            System.out.println("Pentru inserarea datelor intr un tabel apasati tasta 2");
-            System.out.println("Pentru stergerea datelor dintr un tabel in functie de id apasati tasta 3");
-            System.out.println("Pentru a modifica date dintr un tabel apasati tasta 4");
-            System.out.println("Pentru a sorat date dintr un tabel apasati tasta 5 ");
-            System.out.println("Pentru a filtra date dintr un tabelapasati tasta 6");
+            System.out.println("\nMeniu\n");
+            System.out.println("Pentru afisarea tuturor datelor dintr-un tabel apasati tasta 1");
+            System.out.println("Pentru inserarea datelor intr-un tabel apasati tasta 2");
+            System.out.println("Pentru stergerea datelor dintr-un tabel in functie de id apasati tasta 3");
+            System.out.println("Pentru a modifica date intr-un tabel apasati tasta 4");
+            System.out.println("Pentru a sorta date intr-un tabel apasati tasta 5 ");
+            System.out.println("Pentru a filtra date intr-un tabel apasati tasta 6");
             System.out.println("Pentru a iesi apasati tasta 7");
             System.out.print("Introduceti optiunea dorita: ");
             optiune2 = scanner2.nextInt();

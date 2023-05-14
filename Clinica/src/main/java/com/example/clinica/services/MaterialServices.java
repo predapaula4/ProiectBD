@@ -43,13 +43,6 @@ public class MaterialServices {
         return null;
     }
 
-    public void deleteMaterialByDenumire(String denumire)
-    {
-        Material material = getMaterialByDenumire(denumire);
-        if (material != null) {
-            materialRepository.delete(material);
-        }
-    }
     public void updateMaterial(Long id, String denumire)
     {
         Optional<Material> optionalMaterial = materialRepository.findById(id);
@@ -68,7 +61,6 @@ public class MaterialServices {
     public List<Material> sortMaterialsByDenumire() {
         List<Material> materials = materialRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta materialele în funcție de denumire
         Comparator<Material> comparator = Comparator.comparing(Material::getDenumire);
         Collections.sort(materials, comparator);
 

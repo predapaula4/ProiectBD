@@ -47,7 +47,7 @@ public class PacientServices {
         if (pacient != null) {
             return pacient.getIdPacient();
         }
-        return null; // sau aruncați o excepție sau gestionați cazul în funcție de nevoile dvs.
+        return null;
     }
     public void updateIdProgramare(String nume, String prenume, Long idProgramare) {
         Pacient pacient = pacientRepository.findByNumeAndPrenume(nume, prenume);
@@ -80,7 +80,6 @@ public class PacientServices {
     public List<Pacient> sortPacientsByVarsta() {
         List<Pacient> pacienti = pacientRepository.findAll();
 
-        // Utilizăm un Comparator pentru a sorta pacienții în funcție de vârstă
         Comparator<Pacient> comparator = Comparator.comparing(Pacient::getVarsta);
         Collections.sort(pacienti, comparator);
 
