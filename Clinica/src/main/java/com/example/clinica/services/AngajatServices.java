@@ -63,8 +63,5 @@ public class AngajatServices {
 
         return angajati;
     }
-    public List<Angajat> filterAngajatiBySpecializare(Long idSpecializare) {
-        return angajatRepository.findBySpecializareId(idSpecializare);
-    }
 
 }

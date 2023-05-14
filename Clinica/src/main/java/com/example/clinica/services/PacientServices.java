@@ -86,7 +86,5 @@ public class PacientServices {
 
         return pacienti;
     }
-    public List<Pacient> filterPacientByAfectiune(Long idAfectiune) {
-        return pacientRepository.findByAfectiuneId(idAfectiune);
-    }
+
 }

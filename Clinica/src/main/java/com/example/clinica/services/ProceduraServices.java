@@ -57,8 +57,5 @@ public class ProceduraServices {
 
         return proceduras;
     }
-    public List<Procedura> filetrProceduraByAparatura(Long idAparatura) {
-        return proceduraRepository.findByAparaturaId(idAparatura);
 
-    }
 }

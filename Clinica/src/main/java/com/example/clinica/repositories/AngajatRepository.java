@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface AngajatRepository extends JpaRepository<Angajat, Long> {
-    List<Angajat> findBySpecializareId(Long idSpecializare);
+
 }

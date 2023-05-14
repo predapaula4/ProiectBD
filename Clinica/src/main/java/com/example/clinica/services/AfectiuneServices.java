@@ -59,7 +59,5 @@ public class AfectiuneServices {
 
         return afectiuni;
     }
-    public List<Afectiune> filterAfectiuneByProcedura(Long idProcedura) {
-        return afectiuneRepository.findByProceduraId(idProcedura);
-    }
+
 }

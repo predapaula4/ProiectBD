@@ -22,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Meniu {
@@ -669,8 +670,14 @@ public class Meniu {
                     System.out.println("Introduceti id-ul procedurii: ");
                     Long idProceduraAfetiune=scanner.nextLong();
                     scanner.nextLine();
-                    List<Afectiune> afectiuniFiltrate=afectiuneServices.filterAfectiuneByProcedura(idProceduraAfetiune);
-                    System.out.println(afectiuniFiltrate);
+                    List<Afectiune> afectiunes=afectiuneServices.gelAllAfections();
+                    for(Afectiune afectiune:afectiunes)
+                    {
+                        if(Objects.equals(afectiune.getIdProcedura(), idProceduraAfetiune)) {
+                            System.out.println(afectiune);
+                            System.out.println('\n');
+                        }
+                    }
                     break;
                 case 2:
                     AngajatServices angajatServices=context.getBean(AngajatServices.class);
@@ -679,8 +686,15 @@ public class Meniu {
                     System.out.println("Introduceti id-ul specialiarii: ");
                     Long idSpecializareAngajat=scanner.nextLong();
                     scanner.nextLine();
-                    List<Angajat> angajatiFiltrati = angajatServices.filterAngajatiBySpecializare(idSpecializareAngajat);
-                    System.out.println(angajatiFiltrati);
+                    List<Angajat> angajats=angajatServices.getAllAngajats();
+                    for(Angajat angajat:angajats)
+                    {
+                        if(Objects.equals(angajat.getIdSpecializare(), idSpecializareAngajat))
+                        {
+                            System.out.println(angajat);
+                            System.out.println('\n');
+                        }
+                    }
                     break;
                 case 3:
                     PacientServices pacientServices=context.getBean(PacientServices.class);
@@ -690,8 +704,14 @@ public class Meniu {
                     System.out.println("Introduceti id-ul afectiunii: ");
                     Long idAfectiunePacient=scanner.nextLong();
                     scanner.nextLine();
-                    List<Pacient> pacientiFiltrati=pacientServices.filterPacientByAfectiune(idAfectiunePacient);
-                    System.out.println(pacientiFiltrati);
+                    List<Pacient> pacients=pacientServices.getAllPacients();
+                    for(Pacient pacient:pacients)
+                    {
+                        if(Objects.equals(pacient.getIdAfectiune(), idAfectiunePacient)) {
+                            System.out.println(pacient);
+                            System.out.println('\n');
+                        }
+                    }
                     break;
                 case 4:
                     ProceduraServices proceduraServices1=context.getBean(ProceduraServices.class);
@@ -701,8 +721,16 @@ public class Meniu {
                     System.out.println("Introduceti id-ul aparaturii: ");
                     Long idAparaturaProcedura=scanner.nextLong();
                     scanner.nextLine();
-                    List<Procedura> proceduriFiltate=proceduraServices1.filetrProceduraByAparatura(idAparaturaProcedura);
-                    System.out.println(proceduriFiltate);
+                    List<Procedura> proceduras=proceduraServices1.getAllProceduras();
+                    for(Procedura procedura:proceduras)
+                    {
+                        if(Objects.equals(procedura.getIdAparatura(), idAparaturaProcedura))
+                        {
+                            System.out.println(procedura);
+                            System.out.println('\n');
+                        }
+                    }
+
                     break;
                 case 5:
                     ProgramareServices programareServices=context.getBean(ProgramareServices.class);
@@ -718,20 +746,33 @@ public class Meniu {
                         DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                         // Parsați șirul într-un obiect de tip LocalDate
                         LocalDate data = LocalDate.parse(dataProgramare, formatter3);
-                        List<Programare> programariFiltrateByData = programareServices.filterProgramariByData(data);
-                        System.out.println("Programările cu data specificată:");
-                        System.out.println(programariFiltrateByData);
+                        List<Programare> programares=programareServices.getAllProgramare();
+                        for(Programare  programare:programares)
+                        {
+                            if(programare.getDataConsultatie()==data)
+                            {
+                                System.out.println(programare);
+                                System.out.println('\n');
+                            }
+                        }
                     }
-                   else{
+                   else
+                       if(dataOra==2){
                         System.out.println("Introduceti ora (HH:mm:ss), puteti alege din tabelul de mai sus");
                         String oraString2 = scanner.nextLine();
                         // Specificați formatul dorit pentru ora
                         DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("HH:mm:ss");
                         // Parsați șirul într-un obiect de tip LocalTime
                         LocalTime ora = LocalTime.parse(oraString2, formatter4);
-                        List<Programare> programariFiltrateByOra = programareServices.filterProgramariByOra(ora);
-                        System.out.println("Programările cu ora specificată:");
-                        System.out.println(programariFiltrateByOra);
+                        List<Programare> programares=programareServices.getAllProgramare();
+                        for(Programare  programare:programares)
+                           {
+                               if(programare.getOraConsultatiei()==ora)
+                               {
+                                   System.out.println(programare);
+                                   System.out.println('\n');
+                               }
+                           }
                     }
                     break;
                 case 6:

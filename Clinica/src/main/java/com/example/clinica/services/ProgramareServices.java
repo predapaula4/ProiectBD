@@ -72,11 +72,5 @@ public class ProgramareServices {
 
         return programares;
     }
-    public List<Programare> filterProgramariByData(LocalDate data) {
-        return programareRepository.findByDataConsultatie(data);
-    }
 
-    public List<Programare> filterProgramariByOra(LocalTime ora) {
-        return programareRepository.findByOraConsultatiei(ora);
-    }
 }

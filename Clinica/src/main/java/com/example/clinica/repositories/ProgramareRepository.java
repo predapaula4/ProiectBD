@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ProgramareRepository extends JpaRepository<Programare, Long> {
-    List<Programare> findByDataConsultatie(LocalDate data);
-    List<Programare> findByOraConsultatiei(LocalTime ora);
+
 }

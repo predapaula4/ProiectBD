@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ProceduraRepository extends JpaRepository<Procedura, Long> {
-    List<Procedura> findByAparaturaId(Long idAparatura);
+
 }
