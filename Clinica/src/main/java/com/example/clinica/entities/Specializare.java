@@ -15,14 +15,13 @@ public class Specializare {
 
     @Column(name = "denumire", length = 20)
     private String denumire;
+
+    public Specializare() {}
     @Override
     public String toString() {
-        return "Material{" +
-                "idmaterial=" + idSpecializare +
+        return "Specializare{" +
+                "idSpecializare=" + idSpecializare +
                 ", denumire='" + denumire + '\'' +
-                '}'+"\n";
+                '}';
     }
-    public Specializare() {}
-
-
 }

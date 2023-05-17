@@ -15,7 +15,7 @@ public class Material {
     private String denumire;
     @Override
     public String toString() {
-        return "Material{" +
+        return "{" +
                 "idMaterial=" + idMaterial +
                 ", denumire='" + denumire + '\'' +
                 '}'+"\n";

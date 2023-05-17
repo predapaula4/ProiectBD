@@ -26,16 +26,19 @@ public class Pacient {
     @Column(name = "varsta")
     private Long varsta;
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "idPacient=" + idPacient +
-                ", nume='" + nume + '\'' +
-                ",prenume='"+ prenume+ '\''+
-                ",varsta='"+ varsta+'\''+
-                '}'+"\n";
-    }
+
     public Pacient() {}
 
 
+    @Override
+    public String toString() {
+        return "Pacient{" +
+                "idPacient=" + idPacient +
+                ", idAfectiune=" + idAfectiune +
+                ", idProgramare=" + idProgramare +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", varsta=" + varsta +
+                '}';
+    }
 }

@@ -24,18 +24,18 @@ public class Angajat {
 
     @Column(name = "salariu")
     private Long salariu;
-    @Override
-    public String toString() {
-        return "Material{" +
-                "idAngajat=" + idAngajat +
-                ", nume='" + nume + '\'' +
-                ",prenume='"+ prenume+ '\''+
-                ",salariu='"+ salariu+'\''+
-                '}'+"\n";
-    }
-
 
     public Angajat() {}
 
 
+    @Override
+    public String toString() {
+        return "Angajat{" +
+                "idAngajat=" + idAngajat +
+                ", idSpecializare=" + idSpecializare +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", salariu=" + salariu +
+                '}';
+    }
 }

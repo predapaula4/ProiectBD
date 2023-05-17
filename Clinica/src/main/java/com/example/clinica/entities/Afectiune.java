@@ -17,16 +17,16 @@ public class Afectiune {
 
     @Column(name = "idprocedura")
     private Long idProcedura;
-    @Override
-    public String toString() {
-        return "Material{" +
-                "idAfectiune=" + idAfectiune +
-                ", denumire='" + denumire + '\'' +
-                ",idProcedura='"+ idProcedura+ '\''+
-                '}'+"\n";
-    }
 
     public Afectiune() {}
 
 
+    @Override
+    public String toString() {
+        return "Afectiune{" +
+                "idAfectiune=" + idAfectiune +
+                ", denumire='" + denumire + '\'' +
+                ", idProcedura=" + idProcedura +
+                '}';
+    }
 }
