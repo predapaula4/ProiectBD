@@ -36,7 +36,7 @@ public class Procedura {
                 ", idAfectiune=" + idAfectiune +
                 ", idAparatura=" + idAparatura +
                 ", idMaterial=" + idMaterial +
-                '}';
+                '}'+"\n";
     }
 }
 

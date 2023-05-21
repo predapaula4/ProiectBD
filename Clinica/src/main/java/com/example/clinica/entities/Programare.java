@@ -38,6 +38,6 @@ public class Programare {
                 ", idAngajat=" + idAngajat +
                 ", dataConsultatie=" + dataConsultatie +
                 ", oraConsultatiei=" + oraConsultatiei +
-                '}';
+                '}'+"\n";
     }
 }

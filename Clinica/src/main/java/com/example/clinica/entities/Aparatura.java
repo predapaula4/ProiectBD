@@ -24,6 +24,6 @@ public class Aparatura {
         return "Aparatura{" +
                 "idAparatura=" + idAparatura +
                 ", denumire='" + denumire + '\'' +
-                '}';
+                '}'+"\n";
     }
 }

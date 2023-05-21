@@ -36,6 +36,6 @@ public class Angajat {
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", salariu=" + salariu +
-                '}';
+                '}'+"\n";
     }
 }

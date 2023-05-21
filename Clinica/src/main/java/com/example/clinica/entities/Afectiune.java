@@ -27,6 +27,6 @@ public class Afectiune {
                 "idAfectiune=" + idAfectiune +
                 ", denumire='" + denumire + '\'' +
                 ", idProcedura=" + idProcedura +
-                '}';
+                '}'+"\n";
     }
 }

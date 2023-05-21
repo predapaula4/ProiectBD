@@ -39,6 +39,6 @@ public class Pacient {
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", varsta=" + varsta +
-                '}';
+                '}'+"\n";
     }
 }

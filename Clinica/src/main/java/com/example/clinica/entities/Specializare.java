@@ -22,6 +22,6 @@ public class Specializare {
         return "Specializare{" +
                 "idSpecializare=" + idSpecializare +
                 ", denumire='" + denumire + '\'' +
-                '}';
+                '}'+"\n";
     }
 }

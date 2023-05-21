@@ -371,8 +371,8 @@ public class Meniu {
                     Long idAparatura = scanner.nextLong();
                     scanner.nextLine();
                     System.out.print("Introduceti noua denumire: ");
-                    String denumireAparatura = scanner.next();
-                    aparaturaServices.updateAparatura(idAparatura, denumireAparatura);
+                    String denumireAparaturaa = scanner.next();
+                    aparaturaServices.updateAparatura(idAparatura, denumireAparaturaa);
                     System.out.println(aparaturaServices.getAllAparaturas());
                     break;
                 case 4:
@@ -671,8 +671,8 @@ public class Meniu {
                 case 2:
                     AngajatServices angajatServices=context.getBean(AngajatServices.class);
                     SpecializareServices specializareServices=context.getBean(SpecializareServices.class);
+                    System.out.println(specializareServices.getAllSpecializares());
                     System.out.println("Puteti filtra angajatii in funtie de specializare, puteti alege din specializarile de mai sus: ");
-                    specializareServices.getAllSpecializares();
                     System.out.println("Introduceti id-ul specialiarii: ");
                     Long idSpecializareAngajat=scanner.nextLong();
                     scanner.nextLine();
